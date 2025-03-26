@@ -19,11 +19,11 @@ export async function GET(req) {
 
     const list = await ProductModel.find({
       $or: [{ name: { $regex: keyword, $options: "i" } }],
-    });
-    // .populate("category", "name")
-    // .skip(skip)
-    // .limit(perPage)
-    // .sort({ createdAt: -1 });
+    })
+      // .populate("category", "name")
+      .skip(skip)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
 
     return Response.json({ list, total: total?.length });
   } catch (error) {
