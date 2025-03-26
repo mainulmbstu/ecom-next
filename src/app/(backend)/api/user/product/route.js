@@ -20,7 +20,7 @@ export async function GET(req) {
     const list = await ProductModel.find({
       $or: [{ name: { $regex: keyword, $options: "i" } }],
     })
-      .populate("category", "name")
+      .populate("user", "name")
       .skip(skip)
       .limit(perPage)
       .sort({ createdAt: -1 });
