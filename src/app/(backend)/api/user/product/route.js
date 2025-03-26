@@ -15,16 +15,15 @@ export async function GET(req) {
       $or: [{ name: { $regex: keyword, $options: "i" } }],
     });
 
-    const list = await ProductModel.find();
+    // const list = await ProductModel.find();
 
-    // const list = await ProductModel.find({
-    //   $or: [{ name: { $regex: keyword, $options: "i" } }],
-    // })
-    //   .populate("user", "name")
-    //   .populate("category", "name")
-    //   .skip(skip)
-    //   .limit(perPage)
-    //   .sort({ createdAt: -1 });
+    const list = await ProductModel.find({
+      $or: [{ name: { $regex: keyword, $options: "i" } }],
+    })
+      .populate("category", "name")
+      .skip(skip)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
 
     return Response.json({ list, total: total?.length });
   } catch (error) {
