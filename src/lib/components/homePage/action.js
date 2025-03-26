@@ -40,23 +40,3 @@ export const allProductAction = async (keyword, page = 1, perPage) => {
     return { message: await getErrorMessage(error) };
   }
 };
-
-//==============================
-export const deleteAction = async (id = "") => {
-  try {
-    await dbConnect();
-
-    const categoryExist = await ProductModel.findByIdAndDelete(id);
-    // categoryExist.picture?.public_id &&
-    //   (await deleteImageOnCloudinary(categoryExist.picture?.public_id))
-    revalidatePath("/", "layout");
-
-    return {
-      message: `${categoryExist?.name} has been deleted successfully`,
-      success: true,
-    };
-  } catch (error) {
-    console.log(error);
-    return { message: await getErrorMessage(error) };
-  }
-};
