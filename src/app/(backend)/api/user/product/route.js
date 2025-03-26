@@ -17,9 +17,7 @@ export async function GET(req) {
 
     // const list = await ProductModel.find();
 
-    const list = await ProductModel.find({
-      $or: [{ name: { $regex: keyword, $options: "i" } }],
-    })
+    const list = await ProductModel.find()
       .populate("category", "name")
       .skip(skip)
       .limit(perPage)
