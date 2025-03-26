@@ -15,8 +15,6 @@ export async function GET(req) {
       $or: [{ name: { $regex: keyword, $options: "i" } }],
     });
 
-    // const list = await ProductModel.find();
-
     const list = await ProductModel.find({
       $or: [{ name: { $regex: keyword, $options: "i" } }],
     })

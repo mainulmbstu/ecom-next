@@ -14,10 +14,10 @@ const Home1 = async ({ searchParams }) => {
   let page = Number((await spms["page"]) ?? "1");
   let perPage = Number((await spms["perPage"]) ?? "30");
 
-  // let data = await allProductAction(keyword, page, perPage);
-  let { data } = await Axios.get(
-    `/api/user/product?keyword=${keyword}&page=${page}&perPage=${perPage}`
-  );
+  let data = await allProductAction(keyword, page, perPage);
+  // let { data } = await Axios.get(
+  //   `/api/user/product?keyword=${keyword}&page=${page}&perPage=${perPage}`
+  // );
   let entries = data?.list;
   return (
     <div className="p-2">
