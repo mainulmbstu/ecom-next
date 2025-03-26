@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "tailwindcss-animate";
+
+@theme {
+  --text-tiny: 0.625rem;
+  --text-tiny--line-height: 1.5rem;
+  --text-tiny--letter-spacing: 0.125rem;
+  --text-tiny--font-weight: 500;
+}
+@theme {
+  --test-400: #ffad00;
+}
+.bg-test {
+  background-color: var(--test-400);
+}
+@utility black-theme {
+  background-color: rgb(0, 0, 0);
+  color: #ffffff;
+}
+/* working */
+@utility card {
+  background-color: #e6e6e6;
+  /* background-color: var(--color-gray); */
+  border-radius: var(--rounded-lg);
+  padding: 10px;
+  box-shadow: var(--shadow-xl);
+  color: #0a0a0a;
+}
+/* 
+@layer components {
+  .card {
+    background-color: #ffffff;
+    background-color: var(--color-gray);
+    border-radius: var(--rounded-lg);
+    padding: 10px;
+    box-shadow: var(--shadow-xl);
+    color: #0a0a0a;
+  }
+  .blackTheme {
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+  }
+} */
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+[data-theme="dark"] {
+  --background: black;
+  --foreground: white;
+}
+
+/* custom theme app e use na korle  */
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --color: white;
+  }
+} */
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+h4 {
+  font-size: 1.33em;
+  font-weight: bold;
+}
+h5 {
+  font-size: 0.83em;
+  font-weight: bold;
+}
+h6 {
+  font-size: 0.67em;
+  font-weight: bold;
+}
+hr {
+  margin: 12px 0;
+}
+input:focus {
+  outline-width: 0;
+  border-color: #df5d5d;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  background-color: white;
+}
+
+th {
+  font-weight: bolder;
+  background-color: aquamarine;
+}
+/* 
+* {
+  scrollbar-gutter: stable;
+} */
+
+.size-font {
+  font-size: clamp(8px, 1vw, 100px);
+}

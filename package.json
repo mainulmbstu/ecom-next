@@ -1,0 +1,47 @@
+{
+  "name": "blog-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.5.1",
+    "jose": "^6.0.6",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
+    "mongoose": "^8.9.5",
+    "motion": "^12.4.7",
+    "next": "15.1.6",
+    "next-cloudinary": "^6.16.0",
+    "next-themes": "^0.4.6",
+    "nodemailer": "^6.10.0",
+    "otp-generator": "^4.0.1",
+    "plaiceholder": "^3.0.0",
+    "postcss": "^8.5.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.1",
+    "react-icons": "^5.4.0",
+    "server-only": "^0.0.1",
+    "sharp": "^0.33.5",
+    "slugify": "^1.6.6",
+    "sweetalert2": "^11.15.10",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.0.0",
+    "daisyui": "^5.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.6",
+    "eslint-config-prettier": "^10.0.1",
+    "tailwindcss": "^4.0.0"
+  }
+}
