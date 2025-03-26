@@ -1,4 +1,4 @@
-export const dynamic = "force dynamic";
+// export const dynamic = "force dynamic";
 
 // import { Suspense } from "react";
 // import Skeleton from "@/lib/components/Skeleton";
@@ -19,9 +19,10 @@ const Home = async ({ searchParams }) => {
   let perPage = Number((await spms["perPage"]) ?? "30");
 
   // let data = await allProductAction(keyword, page, perPage);
-  let { data } = await Axios.get(
-    `/api/user/product?keyword=${keyword}&page=${page}&perPage=${perPage}`
+  let res = await fetch(
+    `${process.env.BASE_URL}/api/user/product?keyword=${keyword}&page=${page}&perPage=${perPage}`
   );
+  let data = await res.json();
   let entries = data?.list;
   return (
     <div className="p-2">
