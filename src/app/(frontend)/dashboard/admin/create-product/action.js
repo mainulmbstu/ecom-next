@@ -21,7 +21,6 @@ export const editAction = async (id, formData) => {
   let color = formData.get("color");
   let description = formData.get("description");
   let files = formData.getAll("file");
-  console.log(category);
   try {
     await dbConnect();
     const itemExist = await ProductModel.findById(id);

@@ -20,10 +20,10 @@ const Home = async ({ searchParams }) => {
 
   // let data = await allProductAction(keyword, page, perPage);
   let res = await fetch(
-    `${process.env.BASE_URL}/api/user/product?keyword=${keyword}&page=${page}&perPage=${perPage}`
+    `${process.env.BASE_URL}/api/admin/product?keyword=${keyword}&page=${page}&perPage=${perPage}`
   );
   let data = await res.json();
-  let entries = data?.list;
+  let entries = data?.productList;
   return (
     <div className="p-2">
       <div className="my-3">
