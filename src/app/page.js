@@ -1,3 +1,5 @@
+export const dynamic = "force dynamic";
+
 // import { Suspense } from "react";
 // import Skeleton from "@/lib/components/Skeleton";
 // import Home1 from "./Home1";
