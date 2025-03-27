@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getErrorMessage } from "@/lib/helpers/getErrorMessage";
-import { CategoryModel } from "@/lib/models/CategoryModel";
 import dbConnect from "@/lib/helpers/dbConnect";
 import { uploadOnCloudinary } from "@/lib/helpers/cloudinary";
 import slugify from "slugify";
 import { revalidatePath } from "next/cache";
 import { getTokenData } from "@/lib/helpers/getTokenData";
 import { getCookieValue } from "@/lib/helpers/helperFunction";
+import { CategoryModel } from "@/lib/models/categoryModdel";
 
 export async function POST(req) {
   let formData = await req.formData();

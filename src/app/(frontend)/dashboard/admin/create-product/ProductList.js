@@ -24,7 +24,7 @@ const ProductList = async ({ searchParams }) => {
   return (
     <div>
       <div className="my-3">
-        <Form action={"/dashboard/admin/create-category"}>
+        <Form action="/dashboard/admin/create-category">
           <div className="join">
             <div className="">
               <input

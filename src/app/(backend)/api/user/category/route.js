@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/helpers/dbConnect";
 import { getErrorMessage } from "@/lib/helpers/getErrorMessage";
-import { CategoryModel } from "@/lib/models/CategoryModel";
+import { CategoryModel } from "@/lib/models/categoryModdel";
 
 export async function GET(req) {
   try {

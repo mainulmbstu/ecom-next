@@ -6,7 +6,7 @@ import {
 } from "@/lib/helpers/cloudinary";
 import dbConnect from "@/lib/helpers/dbConnect";
 import { getErrorMessage } from "@/lib/helpers/getErrorMessage";
-import { CategoryModel } from "@/lib/models/CategoryModel";
+import { CategoryModel } from "@/lib/models/categoryModdel";
 import { revalidatePath } from "next/cache";
 import slugify from "slugify";
 

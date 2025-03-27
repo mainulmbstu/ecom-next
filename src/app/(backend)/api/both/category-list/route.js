@@ -1,9 +1,9 @@
 import dbConnect from "@/lib/helpers/dbConnect";
 import { getErrorMessage } from "@/lib/helpers/getErrorMessage";
-import { CategoryModel } from "@/lib/models/CategoryModel";
+import { CategoryModel } from "@/lib/models/categoryModdel";
 
 export async function GET(req) {
-  let keyword = req.nextUrl.searchParams.get("keyword") || '';
+  let keyword = req.nextUrl.searchParams.get("keyword") || "";
   let page = req.nextUrl.searchParams.get("page");
   let perPage = req.nextUrl.searchParams.get("perPage");
   let skip = (page - 1) * perPage;
