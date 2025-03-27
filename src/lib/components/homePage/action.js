@@ -3,8 +3,6 @@
 import dbConnect from "@/lib/helpers/dbConnect";
 import { getErrorMessage } from "@/lib/helpers/getErrorMessage";
 import { ProductModel } from "@/lib/models/productModel";
-import { UserModel } from "@/lib/models/userModel";
-import { revalidatePath } from "next/cache";
 
 //===========================================================
 export const allProductAction = async (keyword, page = 1, perPage) => {
@@ -30,7 +28,7 @@ export const allProductAction = async (keyword, page = 1, perPage) => {
         // { user: authIdArr?.length && authIdArr },
       ],
     })
-      .populate("category", "name")
+      .populate("user", "name")
       .skip(skip)
       .limit(perPage)
       .sort({ createdAt: -1 });
