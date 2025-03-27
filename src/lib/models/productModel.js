@@ -11,6 +11,7 @@ const productSchema = new mongoose.Schema(
     },
     slug: { type: String, required: true, lowercase: true },
     description: { type: String, required: true },
+    categoryName: { type: String, required: true },
     category: {
       type: mongoose.Schema.Types.ObjectId, // or mongoose.ObjectId
       ref: "Category", //collection name in mongoose.model('categories', categorySchema)

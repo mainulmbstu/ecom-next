@@ -41,7 +41,7 @@ const Card = async ({ item }) => {
             </h6>
           </div>
           <div className="relative">
-            <p className="m-0">Category: {item?.category?.name}</p>
+            <p className="m-0">Category: {item?.categoryName}</p>
             <p className={item?.offer ? "line-through " : "mb-1"}>
               Price: {<PriceFormat price={item?.price} />}{" "}
             </p>
