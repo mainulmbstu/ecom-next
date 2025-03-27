@@ -12,7 +12,12 @@ const Home1 = async ({ searchParams }) => {
   let page = Number((await spms["page"]) ?? "1");
   let perPage = Number((await spms["perPage"]) ?? "30");
 
-  let data = await allProductAction(keyword, page, perPage);
+  // let data = await allProductAction(keyword, page, perPage);
+
+  let res = await fetch(
+    `${process.env.BASE_URL}/api/user/product?keyword=${keyword}&page=${page}&perPage=${perPage}`
+  );
+  let data = await res.json();
   console.log(data);
   let entries = data?.list;
   return (
