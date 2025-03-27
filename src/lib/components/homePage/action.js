@@ -30,7 +30,7 @@ export const allProductAction = async (keyword, page = 1, perPage) => {
         // { user: authIdArr?.length && authIdArr },
       ],
     })
-      .populate("category", "name")
+      // .populate("category", "name")
       .skip(skip)
       .limit(perPage)
       .sort({ createdAt: -1 });
