@@ -1,7 +1,7 @@
 // const mongoose = require("mongoose");
 import mongoose from "mongoose";
 
-const CategorySchema = new mongoose.Schema(
+const categorySchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -30,4 +30,4 @@ const CategorySchema = new mongoose.Schema(
 );
 
 export const CategoryModel =
-  mongoose.models?.categories || mongoose.model("categories", CategorySchema);
+  mongoose.models?.Category || mongoose.model("Category", categorySchema);

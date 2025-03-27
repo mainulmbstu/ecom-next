@@ -77,7 +77,7 @@ const ProductList = async ({ searchParams }) => {
                     </Link>
                   </td>
                   <td>{item.user.name}</td>
-                  <td>{item.category.name}</td>
+                  <td>{item.category?.name}</td>
                   <td>{item.quantity}</td>
                   <td>{item.price}</td>
                   <td>{item.offer}</td>
@@ -90,7 +90,7 @@ const ProductList = async ({ searchParams }) => {
                       value={{
                         id: item._id.toString(),
                         name: item.name,
-                        category: item.category.name,
+                        category: item.category?.name,
                         picture: item?.picture[0]?.secure_url,
                         price: item.price,
                         offer: item.offer,

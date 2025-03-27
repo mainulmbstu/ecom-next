@@ -13,8 +13,7 @@ const productSchema = new mongoose.Schema(
     description: { type: String, required: true },
     category: {
       type: mongoose.Schema.Types.ObjectId, // or mongoose.ObjectId
-      ref: "categories", //collection name in mongoose.model('categories', categorySchema)
-      required: true,
+      ref: "Category", //collection name in mongoose.model('categories', categorySchema)
     },
     price: { type: Number, required: true },
     offer: { type: Number, default: 0 },

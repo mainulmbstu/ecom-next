@@ -13,7 +13,7 @@ const Home1 = async ({ searchParams }) => {
   let perPage = Number((await spms["perPage"]) ?? "30");
 
   let data = await allProductAction(keyword, page, perPage);
-
+  console.log(data);
   let entries = data?.list;
   return (
     <div className="p-2">
