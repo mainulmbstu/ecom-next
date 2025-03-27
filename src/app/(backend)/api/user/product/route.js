@@ -1,6 +1,7 @@
 import { getErrorMessage } from "@/lib/helpers/getErrorMessage";
 import dbConnect from "@/lib/helpers/dbConnect";
 import { ProductModel } from "@/lib/models/productModel";
+import { CategoryModel } from "@/lib/models/categoryModdel";
 
 //=============================
 export async function GET(req) {
@@ -18,6 +19,7 @@ export async function GET(req) {
     const list = await ProductModel.find({
       $or: [{ name: { $regex: keyword, $options: "i" } }],
     })
+      .populate({ path: "category", model: CategoryModel })
       // .populate("user", "name")
       .skip(skip)
       .limit(perPage)
@@ -26,6 +28,6 @@ export async function GET(req) {
     return Response.json({ list, total: total?.length });
   } catch (error) {
     console.log(error);
-    return { message: await getErrorMessage(error) };
+    return Response.json({ message: await getErrorMessage(error) });
   }
 }

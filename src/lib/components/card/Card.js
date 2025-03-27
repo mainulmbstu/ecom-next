@@ -87,7 +87,7 @@ const Card = async ({ item }) => {
                 name: item?.name,
                 picture: item?.picture[0]?.secure_url,
                 price: item?.price,
-                category: item?.category?.name,
+                category: item?.categoryName,
                 color: item?.color,
                 amount: item?.amount,
               }}

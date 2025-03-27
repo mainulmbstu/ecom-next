@@ -18,7 +18,7 @@ const Home1 = async ({ searchParams }) => {
     `${process.env.BASE_URL}/api/user/product?keyword=${keyword}&page=${page}&perPage=${perPage}`
   );
   let data = await res.json();
-  console.log(data);
+  console.log(data?.list);
   let entries = data?.list;
   return (
     <div className="p-2">
