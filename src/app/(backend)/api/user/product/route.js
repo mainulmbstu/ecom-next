@@ -19,7 +19,7 @@ export async function GET(req) {
     const list = await ProductModel.find({
       $or: [{ name: { $regex: keyword, $options: "i" } }],
     })
-      .populate("category", "name parentId", CategoryModel)
+      .populate("category", "name", CategoryModel)
       // .populate({ path: "category", select: "name", model: CategoryModel })
       .skip(skip)
       .limit(perPage)

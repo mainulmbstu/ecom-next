@@ -7,6 +7,7 @@ import { getTokenData } from "@/lib/helpers/getTokenData";
 import { getCookieValue } from "@/lib/helpers/helperFunction";
 import { ProductModel } from "@/lib/models/productModel";
 import { CategoryModel } from "@/lib/models/categoryModdel";
+import { UserModel } from "@/lib/models/userModel";
 
 export async function POST(req) {
   let formData = await req.formData();
@@ -23,7 +24,6 @@ export async function POST(req) {
     return Response.json({ message: "All fields are required" });
   }
   let files = formData.getAll("file");
-  const catName = await CategoryModel.findById(category);
   try {
     await dbConnect();
     let url;
@@ -47,7 +47,6 @@ export async function POST(req) {
     product.name = name;
     product.slug = slugify(name);
     product.category = category;
-    product.categoryName = catName?.name;
     product.description = description;
     product.price = price;
     product.quantity = quantity;
@@ -85,8 +84,9 @@ export async function GET(req) {
     const productList = await ProductModel.find({
       $or: [{ name: { $regex: keyword, $options: "i" } }],
     })
-      .populate("user", "name")
-      .populate("category", "name")
+      .populate("user", "name", UserModel)
+      .populate("category", "name", CategoryModel)
+      // .populate({ path: "category", select: "name", model: CategoryModel })
       .skip(skip)
       .limit(perPage)
       .sort({ createdAt: -1 });

@@ -2,6 +2,7 @@
 
 import dbConnect from "@/lib/helpers/dbConnect";
 import { getErrorMessage } from "@/lib/helpers/getErrorMessage";
+import { CategoryModel } from "@/lib/models/categoryModdel";
 import { ProductModel } from "@/lib/models/productModel";
 
 //===========================================================
@@ -17,18 +18,19 @@ export const allProductAction = async (keyword, page = 1, perPage) => {
     const total = await ProductModel.find({
       $or: [
         { name: { $regex: keyword, $options: "i" } },
-        { product: { $regex: keyword, $options: "i" } },
+        { description: { $regex: keyword, $options: "i" } },
         // { user: authIdArr?.length && authIdArr },
       ],
     });
     const list = await ProductModel.find({
       $or: [
         { name: { $regex: keyword, $options: "i" } },
-        { product: { $regex: keyword, $options: "i" } },
+        { description: { $regex: keyword, $options: "i" } },
         // { user: authIdArr?.length && authIdArr },
       ],
     })
-      // .populate("user", "name")
+      .populate("category", "name", CategoryModel)
+      // .populate({ path: "category", select: "name", model: CategoryModel })
       .skip(skip)
       .limit(perPage)
       .sort({ createdAt: -1 });
