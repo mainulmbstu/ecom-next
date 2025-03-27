@@ -28,7 +28,7 @@ export const allProductAction = async (keyword, page = 1, perPage) => {
         // { user: authIdArr?.length && authIdArr },
       ],
     })
-      .populate("user", "name")
+      // .populate("user", "name")
       .skip(skip)
       .limit(perPage)
       .sort({ createdAt: -1 });
