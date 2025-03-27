@@ -29,8 +29,8 @@ export const allProductAction = async (keyword, page = 1, perPage) => {
         // { user: authIdArr?.length && authIdArr },
       ],
     })
-      .populate("category", "name", CategoryModel)
       // .populate({ path: "category", select: "name", model: CategoryModel })
+      .populate("category", "name", CategoryModel)
       .skip(skip)
       .limit(perPage)
       .sort({ createdAt: -1 });
