@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "@/lib/components/Card";
+import Card from "@/lib/components/card/Card";
 import { similarItemsAction } from "./action";
 
 const SimilarItems = async ({ pid }) => {

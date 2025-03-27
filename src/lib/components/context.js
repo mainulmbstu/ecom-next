@@ -11,7 +11,8 @@ export const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [token, setToken] = useState(Cookies.get("token"));
   const [catPlain, setCatPlain] = useState([]);
-  const [catNested, setCatNested] = useState([]);
+  const [catNested, setCatNested] = useState("");
+  const [cart, setCart] = useState([]);
 
   let getUserInfo = async () => {
     if (token) {
@@ -44,6 +45,8 @@ export const AuthProvider = ({ children }) => {
         catPlain,
         catPlainFunc,
         catNested,
+        cart,
+        setCart,
       }}
     >
       {children}

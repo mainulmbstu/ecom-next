@@ -2,11 +2,9 @@ import * as motion from "motion/react-client";
 
 import Pagination from "@/lib/components/pagination";
 import Form from "next/form";
-import Link from "next/link";
 import Loadmore from "@/lib/components/Loadmore";
 import { allProductAction } from "./action";
-import Card from "../Card";
-import { Axios } from "@/lib/helpers/AxiosInstance";
+import Card from "../card/Card";
 
 const Home1 = async ({ searchParams }) => {
   let spms = await searchParams;
@@ -15,9 +13,7 @@ const Home1 = async ({ searchParams }) => {
   let perPage = Number((await spms["perPage"]) ?? "30");
 
   let data = await allProductAction(keyword, page, perPage);
-  // let { data } = await Axios.get(
-  //   `/api/user/product?keyword=${keyword}&page=${page}&perPage=${perPage}`
-  // );
+
   let entries = data?.list;
   return (
     <div className="p-2">

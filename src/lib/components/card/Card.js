@@ -2,14 +2,14 @@ import Image from "next/image";
 import React from "react";
 import getBase64 from "@/lib/helpers/plaiceholder";
 import Link from "next/link";
-import { getCookieValue } from "../helpers/helperFunction";
-import { getTokenData } from "../helpers/getTokenData";
-import PriceFormat from "./PriceFormat";
+import PriceFormat from "../PriceFormat";
 import { MdStar } from "react-icons/md";
+import AddToCartBTN from "./AddToCartBTN";
 
 const Card = async ({ item }) => {
+  // let plainItem = { ...item, _id: item?._id.toString() };
+  // console.log(plainItem);
   let charLimit = 30;
-  let userInfo = await getTokenData(await getCookieValue("token"));
   let blurData = await getBase64(item?.picture[0]?.secure_url);
   return (
     <div className="h-full">
@@ -80,21 +80,18 @@ const Card = async ({ item }) => {
           >
             Viw Details
           </Link>
-          <div
-            className={
-              item?.user?._id == userInfo?._id || userInfo?.role === "admin"
-                ? ""
-                : "hidden"
-            }
-          >
-            {/* <DeleteModal
-              value={{
+          <div>
+            <AddToCartBTN
+              item={{
                 id: item?._id.toString(),
-                message: `Do you want to delete ${item?.name}`,
-                // action: deletePostAction,
-                // redirect: "/",
+                name: item?.name,
+                picture: item?.picture[0]?.secure_url,
+                price: item?.price,
+                category: item?.category?.name,
+                color: item?.color,
+                amount: item?.amount,
               }}
-            /> */}
+            />
           </div>
         </div>
       </div>

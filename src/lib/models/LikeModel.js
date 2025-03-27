@@ -19,4 +19,4 @@ const likeSchema = new mongoose.Schema(
 );
 
 export const LikeModel =
-  mongoose.models?.likes || mongoose.model("likes", likeSchema);
+  mongoose.models?.Like || mongoose.model("Like", likeSchema);
