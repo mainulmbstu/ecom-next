@@ -1,19 +1,22 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
   {
     products: [
       {
-        type: Object // or mongoose.ObjectId
+        type: Object, // or mongoose.ObjectId
         // ref: "Product",
       },
     ],
-    total:Number,
+    total: Number,
     payment: {
-    payment_id:{type:String},
-    payment_method:{type:Object},
-    trxn_id:{type:String},
-    status:{type:Boolean, default:false}
+      payment_id: { type: String },
+      payment_method: { type: Object },
+      ssl_trxn_details: { type: Object },
+      trxn_id: { type: String },
+      refund: { type: String },
+      bkashNo: { type: String },
+      status: { type: Boolean, default: false },
     },
 
     user: {
@@ -29,6 +32,5 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const OrderModel = mongoose.model("Order", orderSchema);
-
-module.exports = OrderModel ;
+export const OrderModel =
+  mongoose.models?.Order || mongoose.model("Order", orderSchema);

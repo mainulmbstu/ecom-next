@@ -80,9 +80,30 @@ const RegistrationForm = () => {
               name="email"
               required
             />
-            {/* <p className=" text-red-500" aria-live="polite">
-                {state?.message}
-              </p> */}
+          </div>
+          <div className="mt-3">
+            <label className="block" htmlFor="phone">
+              Mobile Number
+            </label>
+            <input
+              className="input"
+              type="text"
+              id="phone"
+              name="phone"
+              required
+            />
+          </div>
+          <div className="mt-3">
+            <label className="block" htmlFor="address">
+              Address
+            </label>
+            <input
+              className="input"
+              type="text"
+              id="address"
+              name="address"
+              required
+            />
           </div>
 
           <div className="mt-3 relative">

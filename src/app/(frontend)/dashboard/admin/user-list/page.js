@@ -56,6 +56,8 @@ const Users = async ({ searchParams }) => {
               <th>Name</th>
               <th>Picture</th>
               <th>Email</th>
+              <th>Mobile No.</th>
+              <th>Address</th>
               <th>Role</th>
               <th>Join Date</th>
               <th>Action</th>
@@ -79,6 +81,8 @@ const Users = async ({ searchParams }) => {
                     </Link>
                   </td>
                   <td>{item.email}</td>
+                  <td>{item.phone}</td>
+                  <td>{item.address}</td>
                   <td>
                     <Role role={item.role} id={item._id.toString()} />
                   </td>

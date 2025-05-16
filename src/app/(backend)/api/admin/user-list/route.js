@@ -36,6 +36,6 @@ export async function GET(req) {
     return Response.json({ userList, total: total?.length });
   } catch (error) {
     console.log(error);
-    return { message: await getErrorMessage(error) };
+     return Response.json({ message: await getErrorMessage(error) });
   }
 }

@@ -75,7 +75,32 @@ const Profile = () => {
             readOnly
           />
         </div>
-
+        <div className="mt-3">
+          <label className="block" htmlFor="phone">
+            Mobile Number
+          </label>
+          <input
+            className="input"
+            type="text"
+            id="phone"
+            name="phone"
+            defaultValue={userInfo?.phone}
+            required
+          />
+        </div>
+        <div className="mt-3">
+          <label className="block" htmlFor="address">
+            Address
+          </label>
+          <input
+            className="input"
+            type="text"
+            id="address"
+            name="address"
+            defaultValue={userInfo?.address}
+            required
+          />
+        </div>
         <div className="mt-3">
           <label className="block" htmlFor="name">
             password

@@ -29,6 +29,10 @@ export const AuthProvider = ({ children }) => {
     // let { data } = await Axios.get(`/api/user/category`);
     // setCatPlain(data?.catPlain);
   };
+  useEffect(() => {
+    let storageCart = localStorage.getItem("cart");
+    if (storageCart) setCart(JSON.parse(storageCart));
+  }, []);
 
   useEffect(() => {
     token && getUserInfo();

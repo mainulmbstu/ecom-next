@@ -16,6 +16,8 @@ export async function POST(req) {
 
   let name = formData.get("name");
   let email = formData.get("email");
+  let phone = formData.get("phone");
+  let address = formData.get("address");
   let password = formData.get("password");
   if (!name || !email || !password) {
     return Response.json({ message: "Please enter all required fields" });
@@ -41,6 +43,8 @@ export async function POST(req) {
     const newUser = await UserModel.create({
       name,
       email,
+      phone,
+      address,
       password: hashedPass,
       role: allUser ? "user" : "admin",
       verifyTokenExpire: Date.now() + 3600000,

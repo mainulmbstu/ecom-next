@@ -14,6 +14,6 @@ export async function GET(req) {
     return Response.json({ comments });
   } catch (error) {
     console.log(error);
-    return { message: await getErrorMessage(error) };
+    return Response.json({ message: await getErrorMessage(error) });
   }
 }

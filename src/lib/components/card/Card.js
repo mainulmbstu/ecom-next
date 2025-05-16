@@ -10,7 +10,7 @@ const Card = async ({ item }) => {
   // let plainItem = { ...item, _id: item?._id.toString() };
   // console.log(plainItem);
   let charLimit = 30;
-  let blurData = await getBase64(item?.picture[0]?.secure_url);
+  let blurData = await getBase64(item?.picture && item?.picture[0]?.secure_url);
   return (
     <div className="h-full">
       <div className="card shadow-xl h-full flex flex-col">
@@ -19,7 +19,7 @@ const Card = async ({ item }) => {
             fill
             priority={true}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            blurDataURL={blurData}
+            blurDataURL={blurData || ""}
             placeholder="blur"
             className=" object-contain"
             src={item?.picture[0]?.secure_url}
@@ -83,13 +83,14 @@ const Card = async ({ item }) => {
           <div>
             <AddToCartBTN
               item={{
-                id: item?._id.toString(),
+                _id: item?._id.toString(),
                 name: item?.name,
-                picture: item?.picture[0]?.secure_url,
+                picture: item?.picture,
                 price: item?.price,
                 category: item?.category?.name,
                 color: item?.color,
                 amount: item?.amount,
+                quantity: item?.quantity,
               }}
             />
           </div>

@@ -1,5 +1,5 @@
 {
-  "name": "blog-next",
+  "name": "ecom-next",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",
+    "bkash-payment": "^3.0.5",
     "cloudinary": "^2.5.1",
     "jose": "^6.0.6",
     "js-cookie": "^3.0.5",

@@ -6,7 +6,7 @@ import Form from "next/form";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { useAuth } from "@/lib/components/context";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import loginImage from "@/assets/login.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,7 +17,8 @@ const LoginForm = () => {
   let { setToken, setUserInfo } = useAuth();
   let router = useRouter();
   const [showpass, setShowPass] = useState(false);
-
+  let lastPath = useSearchParams().get("lastPath");
+  console.log(lastPath);
   let clientAction = async (formData) => {
     let data = await loginAction(formData);
     if (data?.success) {
@@ -25,13 +26,12 @@ const LoginForm = () => {
       toast.success(data?.message);
       setToken(data?.token);
       setUserInfo(data?.userInfo?.mm);
-      router.push("/");
+      router.push(lastPath ? lastPath : "/");
     } else {
       // Swal.fire("Error", data?.message, "error");
       toast.error(data?.message);
     }
   };
-
   return (
     <div className=" h-[89vh] grid md:grid-cols-2 place-items-center black-theme ">
       {/* <h3 className=" text-white">Login </h3> */}

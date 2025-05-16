@@ -18,13 +18,13 @@ const NavMenu = () => {
   const [drop2, setdrop2] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  let { userInfo, setUserInfo, setToken, cart } = useAuth();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   let menuClose = () => setisMenuOpen(false);
-  let { userInfo, setUserInfo, setToken } = useAuth();
   let router = useRouter();
   let path = usePathname();
 
@@ -163,13 +163,19 @@ const NavMenu = () => {
           </ul>
         </nav>
       </div>
-      <div className="me-5 text-lg">
+      <div className="me-3 text-lg">
         <button
-          className=" cursor-pointer"
+          className=" cursor-pointer px-3"
           onClick={() => setTheme(theme == "light" ? "dark" : "light")}
         >
           {theme == "light" ? <FaMoon /> : <GoSun />}
         </button>
+        <Link href={"/cart"} className=" relative">
+          Cart{" "}
+          <div className="badge badge-sm badge-secondary absolute top-[-10px] left-4 ">
+            {cart?.length}
+          </div>
+        </Link>
       </div>
       <div className="md:hidden cursor-pointer">
         <span onClick={() => setisMenuOpen(!isMenuOpen)}>

@@ -19,6 +19,8 @@ export async function POST(req) {
   let name = formData.get("name");
   let email = formData.get("email");
   let password = formData.get("password");
+  let phone = formData.get("phone");
+  let address = formData.get("address");
   //for image
   let file = formData.get("file");
   try {
@@ -38,6 +40,8 @@ export async function POST(req) {
       userExist.picture = { secure_url, public_id };
     }
     if (name) userExist.name = name;
+    if (phone) userExist.phone = phone;
+    if (address) userExist.address = address;
     if (password) userExist.password = await bcrypt.hash(password, 10);
 
     (await cookies()).delete("token");

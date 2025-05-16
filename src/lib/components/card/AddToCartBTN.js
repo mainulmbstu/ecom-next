@@ -6,14 +6,13 @@ import toast from "react-hot-toast";
 
 const AddToCartBTN = ({ item }) => {
   let { cart, setCart } = useAuth();
-  console.log(cart);
   return (
     <div>
       {" "}
       <button
         onClick={() => {
-          let cartIds = cart.map((it) => it.id);
-          if (cartIds.includes(item?.id)) {
+          let cartIds = cart.map((it) => it._id);
+          if (cartIds.includes(item?._id)) {
             return alert("Already added");
           }
           setCart([item, ...cart]);
