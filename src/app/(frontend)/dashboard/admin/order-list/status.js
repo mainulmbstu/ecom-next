@@ -2,22 +2,21 @@
 
 import { useAuth } from "@/lib/components/context";
 import React, { useState } from "react";
-import { roleAction } from "./roleAction";
+import { StatusAction } from "./action";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
-const Role = ({ role, id }) => {
+const Status = ({ status, id }) => {
   let { userInfo } = useAuth();
   let [loading, setLoading] = useState(false);
   //   let [value, setValue] = useState('');
-
   let roleHandle = async (value, id) => {
     try {
       if (userInfo?._id === id) {
         return Swal.fire("Error", "You cannot update yourself", "error");
       }
       setLoading(true);
-      let data = await roleAction(value, id);
+      let data = await StatusAction(value, id);
       setLoading(false);
       if (data?.success) {
         toast.success(data?.message);
@@ -31,16 +30,19 @@ const Role = ({ role, id }) => {
     <div>
       <select
         onChange={(e) => roleHandle(e.target.value, id)}
-        defaultValue={role}
+        defaultValue={status}
         name="role"
         className="select"
       >
-        <option disabled={true}>{role}</option>
-        <option>user</option>
-        <option>admin</option>
+        <option disabled={true}>{status}</option>
+        <option>Not Process</option>
+        <option>Processing</option>
+        <option>shipped</option>
+        <option>delivered</option>
+        <option>cancel</option>
       </select>
     </div>
   );
 };
 
-export default Role;
+export default Status;

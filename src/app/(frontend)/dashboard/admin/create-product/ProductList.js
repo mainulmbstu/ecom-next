@@ -76,7 +76,7 @@ const ProductList = async ({ searchParams }) => {
                       />
                     </Link>
                   </td>
-                  <td>{item.user.name}</td>
+                  <td>{item.user?.name}</td>
                   <td>{item.category?.name}</td>
                   <td>{item.quantity}</td>
                   <td>{item.price}</td>

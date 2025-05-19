@@ -6,6 +6,7 @@ import { Axios } from "@/lib/helpers/AxiosInstance";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { checkoutAction } from "./action";
 
 export const CartPage = () => {
   let { userInfo, cart, setCart } = useAuth();
@@ -122,7 +123,6 @@ export const CartPage = () => {
         total,
         callbackURL: `/api/user/checkout/bkash-callback`,
       });
-      console.log(data);
       router.push(data?.bkashURL);
     } catch (error) {
       console.log(error);
@@ -137,21 +137,18 @@ export const CartPage = () => {
     try {
       if (!selectedCart.length)
         return alert("No item has been selected for check out");
-      let res = await fetch(
-        `${import.meta.env.VITE_BASE_URL}/products/order/checkout`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ cart: selectedCart, total }),
-        }
-      );
-      let data = await res.json();
-      window.location.replace(data.url);
+      setLoading(true);
+      let { data } = await Axios.post(`/api/user/checkout/checkout-ssl`, {
+        cart: selectedCart,
+        total,
+      });
+
+      console.log(data);
+      // router.push(data?.url);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 

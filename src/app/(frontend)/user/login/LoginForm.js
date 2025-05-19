@@ -18,7 +18,6 @@ const LoginForm = () => {
   let router = useRouter();
   const [showpass, setShowPass] = useState(false);
   let lastPath = useSearchParams().get("lastPath");
-  console.log(lastPath);
   let clientAction = async (formData) => {
     let data = await loginAction(formData);
     if (data?.success) {
