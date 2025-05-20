@@ -54,7 +54,11 @@ const RefundModal = ({ value }) => {
 
             <Form action={clientAction}>
               <div className="mt-3">
-                <SubmitButton title={"Confirm Refund"} design={"btn-accent"} />
+                <SubmitButton
+                  title={"Confirm Refund"}
+                  design={"btn-accent"}
+                  disable={value?.refund === "refunded"}
+                />
               </div>
             </Form>
             <p> {info()} </p>
