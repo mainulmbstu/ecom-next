@@ -41,7 +41,7 @@ const RefundModal = ({ value }) => {
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <button
         disabled={value?.refund === "refunded"}
-        className="btn btn-link text-blue-600 "
+        className="btn btn-accent text-blue-600 "
         onClick={() => ref.current.showModal()}
         // onClick={() => document.getElementById("my_modal_1").showModal()}
       >

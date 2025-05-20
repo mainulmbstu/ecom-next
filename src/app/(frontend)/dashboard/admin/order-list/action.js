@@ -71,7 +71,6 @@ export const bkashRefund = async (value) => {
       amount,
     };
     const result = await refundTransaction(bkashConfig, refundDetails);
-    console.log(result);
     if (result?.statusCode === "0000") {
       await dbConnect();
       await OrderModel.findOneAndUpdate(
@@ -82,6 +81,7 @@ export const bkashRefund = async (value) => {
       return {
         success: true,
         message: `BDT ${amount} has been refunded successfully`,
+        result,
       };
     }
     // revalidatePath("/dashboard/admin/order-list");
