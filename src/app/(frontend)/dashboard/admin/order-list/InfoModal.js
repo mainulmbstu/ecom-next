@@ -25,6 +25,19 @@ const InfoModal = ({ value }) => {
       toast.error(data?.message);
     }
   };
+
+  let text = [];
+  let info = () => {
+    for (let k in paymentInfo) {
+      text.push(
+        <p key={k.trxID}>
+          {" "}
+          {k} : {paymentInfo[k]}{" "}
+        </p>
+      );
+    }
+    return text;
+  };
   return (
     <div>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -46,7 +59,7 @@ const InfoModal = ({ value }) => {
                 <SubmitButton title={"View details"} design={"btn-accent"} />
               </div>
             </Form>
-            <p> {JSON.stringify(paymentInfo)} </p>
+            <p> {info()} </p>
           </div>
           <div className="modal-action">
             <form method="dialog">
