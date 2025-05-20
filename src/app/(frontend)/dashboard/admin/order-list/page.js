@@ -10,6 +10,7 @@ import PriceFormat from "@/lib/components/PriceFormat";
 import ClientPage from "./clientPage";
 import { bkashSearch } from "./action";
 import SubmitButton from "@/lib/components/SubmitButton";
+import InfoModal from "./InfoModal";
 
 export const metadata = {
   title: "Order List",
@@ -59,107 +60,137 @@ const Orders = async ({ searchParams }) => {
         {/* <h4>Total Sale: {<PriceFormat price={totalPrice} />}</h4> */}
       </div>
       <div className="">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Order Status</th>
-              <th scope="col">User-email</th>
-              <th scope="col">User-Address</th>
-              <th scope="col">Payment</th>
-              <th scope="col">Item</th>
-              <th scope="col">Total Price</th>
-              <th scope="col">Time</th>
-              <th scope="col">Payment Method</th>
-              <th scope="col">Print</th>
-              <th scope="col">Search</th>
-              <th scope="col">Query</th>
-              <th scope="col">Refund</th>
-            </tr>
-          </thead>
-          <tbody>
-            {entries?.length ? (
-              entries?.map((item, i) => (
-                <tr key={item?._id} className="hover:bg-zinc-200">
-                  {/* <td>
-                    <Link href={item.picture?.secure_url} target="_blank">
-                      <Image
-                        priority={true}
-                        className="w-8 h-auto"
-                        width={30}
-                        height="0"
-                        src={item.picture?.secure_url}
-                        alt=""
-                      />
-                    </Link>
-                  </td> */}
-                  <td>{i + 1} </td>
-                  <td>
-                    <Status status={item.status} id={item._id.toString()} />
-                  </td>
-                  <td>{item?.user?.email} </td>
-                  <td>{item?.user?.address} </td>
-                  <td>
-                    {item?.payment?.refund === "refunded"
-                      ? "Refunded"
-                      : item?.payment?.status === true
-                      ? "Success"
-                      : "Failed"}
-                  </td>
-                  <td>{item?.products?.length} </td>
-                  <td>{<PriceFormat price={item.total} />} </td>
-                  <td>{moment(item?.createdAt).fromNow()} </td>
-                  <td>{item?.payment?.payment_id ? "Bkash" : "SSL"} </td>
-                  <td>
-                    <ClientPage item={item} />
-                  </td>
-                  <td>
-                    <Form action={bkashSearch}>
-                      <input
-                        className="hidden"
-                        name="trxID"
-                        type="text"
-                        defaultValue={item.payment?.trxn_id}
-                      />
-                      <SubmitButton
-                        title={"Search"}
-                        design={"btn-accent w-22"}
-                      />
-                    </Form>
-                    {/* <button
-                      onClick={() => {
-                        item?.payment?.payment_id
-                          ? searchBkash(item)
-                          : searchSSL(item);
-                      }}
-                      type="button"
-                      className="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#paymentAll"
-                      disabled={item?.payment?.refund === "refunded"}
-                    >
-                      search
-                    </button> */}
-                  </td>
-                  <td>
-                    <DeleteModal
-                      value={{
-                        id: item?._id.toString(),
-                        message: `Do you want to delete ${item?.name}`,
-                        action: deleteAction,
-                      }}
-                    />
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td>No data found</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        {entries?.length &&
+          entries?.map((item, i) => (
+            <div key={item?._id}>
+              <table className="table">
+                {/* head */}
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Order Status</th>
+                    <th scope="col">User-email</th>
+                    <th scope="col">User-Address</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Total Price</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Payment Method</th>
+                    <th scope="col">Print</th>
+                    <th scope="col">Search</th>
+                    <th scope="col">Query</th>
+                    <th scope="col">Refund</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {entries?.length ? (
+                    <tr className="hover:bg-zinc-200">
+                      <td>{i + 1} </td>
+                      <td>
+                        <Status status={item.status} id={item._id.toString()} />
+                      </td>
+                      <td>{item?.user?.email} </td>
+                      <td>{item?.user?.address} </td>
+                      <td>
+                        {item?.payment?.refund === "refunded"
+                          ? "Refunded"
+                          : item?.payment?.status === true
+                          ? "Success"
+                          : "Failed"}
+                      </td>
+                      <td>{item?.products?.length} </td>
+                      <td>{<PriceFormat price={item.total} />} </td>
+                      <td>{moment(item?.createdAt).fromNow()} </td>
+                      <td>{item?.payment?.payment_id ? "Bkash" : "SSL"} </td>
+                      <td>
+                        <ClientPage item={item} />
+                      </td>
+                      <td>
+                        <Form action={bkashSearch}>
+                          <input
+                            className="hidden"
+                            name="trxID"
+                            type="text"
+                            defaultValue={item.payment?.trxn_id}
+                          />
+                          <SubmitButton
+                            title={"Search"}
+                            design={"btn-accent w-22"}
+                          />
+                        </Form>
+                        <InfoModal
+                          value={{
+                            title: "Search Info",
+                            trxn_id: item.payment?.trxn_id,
+                          }}
+                        />
+                      </td>
+                      <td>
+                        <DeleteModal
+                          value={{
+                            id: item?._id.toString(),
+                            message: `Do you want to delete ${item?.name}`,
+                            action: deleteAction,
+                          }}
+                        />
+                      </td>
+                    </tr>
+                  ) : (
+                    <tr>no data found</tr>
+                  )}
+                </tbody>
+              </table>
+              {item?.products?.length &&
+                item?.products?.map((p, i) => {
+                  return (
+                    <div key={i} className=" g-5 mb-2 bg-zinc-200">
+                      <div className="grid grid-cols-12 g-4">
+                        <div className=" col-span-4 flex justify-center">
+                          <Link
+                            href={`${p?.picture[0]?.secure_url}`}
+                            target="_blank"
+                          >
+                            <Image
+                              src={`${p?.picture[0]?.secure_url}`}
+                              priority={true}
+                              className="w-32 h-auto"
+                              width={200}
+                              height={0}
+                              alt=""
+                            />
+                          </Link>
+                        </div>
+                        <div className=" col-span-8 ">
+                          <div>
+                            <h5>
+                              Name: {p?.name}- Price:{" "}
+                              {
+                                <PriceFormat
+                                  price={p?.price - (p?.price * p?.offer) / 100}
+                                />
+                              }
+                            </h5>
+                            <p>Category: {p?.category?.name} </p>
+                            <p>{`Qnty: ${p?.amount}`}</p>
+                            <p>
+                              Sub-Total:{" "}
+                              {
+                                <PriceFormat
+                                  price={
+                                    (p?.price - (p?.price * p?.offer) / 100) *
+                                    p.amount
+                                  }
+                                />
+                              }
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          ))}
       </div>
       <div className=" mt-3 ">
         <Pagination
@@ -168,7 +199,7 @@ const Orders = async ({ searchParams }) => {
           perPage={perPage}
           spms1="keyword"
           spms1Value={keyword}
-        />{" "}
+        />
       </div>
     </div>
   );

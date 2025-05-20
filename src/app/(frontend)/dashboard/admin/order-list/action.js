@@ -34,16 +34,16 @@ const bkashConfig = {
   app_key: process.env.BKASH_APP_KEY,
   app_secret: process.env.BKASH_APP_SECRET,
 };
-export const bkashSearch = async (formData) => {
+export const bkashSearch = async (trxn_id) => {
   try {
-    let trxID = formData.get("trxID") || "undefine";
+    // let trxID = formData.get("trxID") || "undefine";
     await dbConnect();
-    const result = await searchTransaction(bkashConfig, trxID);
+    const result = await searchTransaction(bkashConfig, trxn_id);
+    console.log(trxn_id, result);
     // revalidatePath("/dashboard/admin/order-list");
 
     return {
       result,
-      message: `Order has been successfully updated to ${"value"} `,
       success: true,
     };
   } catch (error) {

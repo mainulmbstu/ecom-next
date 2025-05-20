@@ -7,7 +7,7 @@ const PaymentSuccess = () => {
       <h4>Your order has been placed successfully</h4>
       <Link
         className=" bg-white px-3 text-blue-600 underline py-1"
-        href={"/dashboard/user/orders"}
+        href={"/dashboard/user/order-list"}
       >
         Click to see you order
       </Link>
