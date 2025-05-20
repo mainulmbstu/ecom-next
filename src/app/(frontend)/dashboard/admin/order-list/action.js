@@ -36,15 +36,59 @@ const bkashConfig = {
 };
 export const bkashSearch = async (trxn_id) => {
   try {
-    // let trxID = formData.get("trxID") || "undefine";
-    await dbConnect();
     const result = await searchTransaction(bkashConfig, trxn_id);
-    console.log(trxn_id, result);
-    // revalidatePath("/dashboard/admin/order-list");
 
     return {
       result,
       success: true,
+    };
+  } catch (error) {
+    console.log(error);
+    return { message: await getErrorMessage(error) };
+  }
+};
+//=====================================
+export const bkashQuery = async (payment_id) => {
+  try {
+    const result = await searchTransaction(bkashConfig, payment_id);
+
+    return {
+      result,
+      success: true,
+    };
+  } catch (error) {
+    console.log(error);
+    return { message: await getErrorMessage(error) };
+  }
+};
+//=====================================
+export const bkashRefund = async (value) => {
+  try {
+    const { paymentID, trxID, amount } = value;
+    const refundDetails = {
+      paymentID,
+      trxID,
+      amount,
+    };
+    const result = await refundTransaction(bkashConfig, refundDetails);
+    console.log(result);
+    if (result?.statusCode === "0000") {
+      await dbConnect();
+      await OrderModel.findOneAndUpdate(
+        { "payment.trxn_id": trxID },
+        { "payment.refund": "refunded" },
+        { new: true }
+      );
+      return {
+        success: true,
+        message: `BDT ${amount} has been refunded successfully`,
+      };
+    }
+    // revalidatePath("/dashboard/admin/order-list");
+
+    return {
+      success: false,
+      message: `BDT ${amount} refund failed`,
     };
   } catch (error) {
     console.log(error);

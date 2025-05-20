@@ -3,21 +3,20 @@ import React, { useRef, useState } from "react";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import Form from "next/form";
-import { bkashQuery, bkashSearch } from "./action";
+import { bkashQuery, bkashRefund, bkashSearch } from "./action";
 import SubmitButton from "@/lib/components/SubmitButton";
 
-const InfoModal = ({ value }) => {
-  let payAction = value?.title === "Search" ? bkashSearch : bkashQuery;
+const RefundModal = ({ value }) => {
   let ref = useRef();
   let [loading, setLoading] = useState(false);
   let [paymentInfo, setpaymentInfo] = useState("");
   let clientAction = async () => {
     setLoading(true);
-    let data = await payAction(value?.id);
+    let data = await bkashRefund(value);
     setLoading(false);
     if (data?.success) {
       // Swal.fire("Success", data?.message, "success");
-      // toast.success(data?.message);
+      toast.success(data?.message);
       setpaymentInfo(data?.result);
     } else {
       // Swal.fire("Error", data?.message, "error");
@@ -41,12 +40,12 @@ const InfoModal = ({ value }) => {
     <div>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <button
-        disabled={loading}
+        disabled={value?.refund === "refunded"}
         className="btn btn-link text-blue-600 "
         onClick={() => ref.current.showModal()}
         // onClick={() => document.getElementById("my_modal_1").showModal()}
       >
-        {loading ? "Submitting" : value?.title}
+        {value?.refund === "refunded" ? "Refunded" : value?.title}
       </button>
       <dialog ref={ref} id="my_modal_1" className="modal">
         <div className="modal-box max-w-full w-100">
@@ -55,7 +54,7 @@ const InfoModal = ({ value }) => {
 
             <Form action={clientAction}>
               <div className="mt-3">
-                <SubmitButton title={"View details"} design={"btn-accent"} />
+                <SubmitButton title={"Confirm Refund"} design={"btn-accent"} />
               </div>
             </Form>
             <p> {info()} </p>
@@ -66,9 +65,9 @@ const InfoModal = ({ value }) => {
                 ✕
               </button>
               {/* if there is a button in form, it will close the modal */}
-              <button type="submit" className="btn btn-error">
+              {/* <button type="submit" className="btn btn-error">
                 Close
-              </button>
+              </button> */}
             </form>
           </div>
         </div>
@@ -77,4 +76,4 @@ const InfoModal = ({ value }) => {
   );
 };
 
-export default InfoModal;
+export default RefundModal;

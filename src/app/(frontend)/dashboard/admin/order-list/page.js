@@ -11,6 +11,7 @@ import ClientPage from "./clientPage";
 import { bkashSearch } from "./action";
 import SubmitButton from "@/lib/components/SubmitButton";
 import InfoModal from "./InfoModal";
+import RefundModal from "./RefundModal";
 
 export const metadata = {
   title: "Order List",
@@ -77,8 +78,8 @@ const Orders = async ({ searchParams }) => {
                     <th scope="col">Time</th>
                     <th scope="col">Payment Method</th>
                     <th scope="col">Print</th>
-                    <th scope="col">Search</th>
                     <th scope="col">Query</th>
+                    <th scope="col">Search</th>
                     <th scope="col">Refund</th>
                   </tr>
                 </thead>
@@ -106,31 +107,29 @@ const Orders = async ({ searchParams }) => {
                         <ClientPage item={item} />
                       </td>
                       <td>
-                        <Form action={bkashSearch}>
-                          <input
-                            className="hidden"
-                            name="trxID"
-                            type="text"
-                            defaultValue={item.payment?.trxn_id}
-                          />
-                          <SubmitButton
-                            title={"Search"}
-                            design={"btn-accent w-22"}
-                          />
-                        </Form>
                         <InfoModal
                           value={{
-                            title: "Search Info",
-                            trxn_id: item.payment?.trxn_id,
+                            title: "Query",
+                            id: item.payment?.payment_id,
                           }}
                         />
                       </td>
                       <td>
-                        <DeleteModal
+                        <InfoModal
                           value={{
-                            id: item?._id.toString(),
-                            message: `Do you want to delete ${item?.name}`,
-                            action: deleteAction,
+                            title: "Search",
+                            id: item.payment?.trxn_id,
+                          }}
+                        />
+                      </td>
+                      <td>
+                        <RefundModal
+                          value={{
+                            title: "Refund",
+                            amount: item?.total,
+                            paymentID: item.payment?.payment_id,
+                            trxID: item.payment?.trxn_id,
+                            refund: item.payment?.refund,
                           }}
                         />
                       </td>
