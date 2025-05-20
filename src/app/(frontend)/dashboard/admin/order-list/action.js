@@ -34,9 +34,9 @@ const bkashConfig = {
   app_key: process.env.BKASH_APP_KEY,
   app_secret: process.env.BKASH_APP_SECRET,
 };
-export const bkashSearch = async (trxn_id) => {
+export const bkashQuery = async (payment_id) => {
   try {
-    const result = await searchTransaction(bkashConfig, trxn_id);
+    const result = await queryPayment(bkashConfig, payment_id);
 
     return {
       result,
@@ -48,9 +48,9 @@ export const bkashSearch = async (trxn_id) => {
   }
 };
 //=====================================
-export const bkashQuery = async (payment_id) => {
+export const bkashSearch = async (trxn_id) => {
   try {
-    const result = await searchTransaction(bkashConfig, payment_id);
+    const result = await searchTransaction(bkashConfig, trxn_id);
 
     return {
       result,
