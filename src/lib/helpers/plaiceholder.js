@@ -7,7 +7,8 @@ let getBase64 = async (url) => {
         "https://res.cloudinary.com/dgj1icpu7/image/upload/v1739850899/dir0m1r7wi2bphos1uqk.jpg"
     );
     if (!res.ok) {
-      throw new Error("Network response is not ok");
+      return;
+      // throw new Error("Network response is not ok");
     }
     let buffer = await res.arrayBuffer();
     let { base64 } = await getPlaiceholder(Buffer.from(buffer));

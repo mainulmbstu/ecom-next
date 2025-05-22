@@ -6,25 +6,30 @@ import Link from "next/link";
 import DeleteModal from "@/lib/components/DeleteModal";
 import { deleteAction } from "./action";
 import EditModal from "./EditModal";
+import { Axios } from "@/lib/helpers/AxiosInstance";
 
 const ProductList = async ({ searchParams }) => {
   let spms = await searchParams;
   let keyword = (await spms["keyword"]) ?? "";
+  let category = (await spms["category"]) ?? "";
   let page = Number((await spms["page"]) ?? "1");
   let perPage = Number((await spms["perPage"]) ?? "12");
 
   let res = await fetch(
-    `${process.env.BASE_URL}/api/admin/product?keyword=${keyword}&page=${page}&perPage=${perPage}`
+    `${process.env.BASE_URL}/api/admin/product?keyword=${keyword}&category=${category}&page=${page}&perPage=${perPage}`
     // {
     //   cache: "force-cache",
     // }
   );
-  let data = await res.json();
-  let entries = data?.productList;
+  let proddata = await res.json();
+  let entries = proddata?.productList;
+
+  let { data } = await Axios.get(`/api/both/category-list`);
+  let catPlain = data?.categoryList;
   return (
     <div>
       <div className="my-3">
-        <Form action="/dashboard/admin/create-category">
+        <Form action="/dashboard/admin/create-product">
           <div className="join">
             <div className="">
               <input
@@ -41,8 +46,34 @@ const ProductList = async ({ searchParams }) => {
           </div>
         </Form>
       </div>
+      <div className="my-3">
+        <Form action="/dashboard/admin/create-product">
+          <div className="join">
+            <div className="">
+              <input
+                defaultValue={category}
+                name="category"
+                type="search"
+                list="categoryList"
+                className="input input-bordered join-item"
+                placeholder="Search"
+              />
+              <datalist id="categoryList">
+                {catPlain?.length &&
+                  catPlain.map((item) => {
+                    return <option key={item._id} value={item?.slug}></option>;
+                  })}
+              </datalist>
+            </div>
+            <div className="">
+              <button className="btn join-item">Search</button>
+            </div>
+          </div>
+        </Form>
+      </div>
+
       <div className="">
-        <h5> Total product: {data?.total} </h5>
+        <h5> Total product: {proddata?.total} </h5>
         <table className="table">
           {/* head */}
           <thead>

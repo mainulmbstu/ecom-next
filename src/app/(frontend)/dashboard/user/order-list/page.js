@@ -3,13 +3,11 @@ import Pagination from "@/lib/components/pagination";
 import Form from "next/form";
 import Image from "next/image";
 import Link from "next/link";
-import DeleteModal from "@/lib/components/DeleteModal";
-import { deleteAction } from "./deleteAction";
 import Status from "./status";
 import PriceFormat from "@/lib/components/PriceFormat";
-import ClientPage from "./clientPage";
-import InfoModal from "./InfoModal";
-import RefundModal from "./RefundModal";
+import { Axios } from "@/lib/helpers/AxiosInstance";
+import { getTokenData } from "@/lib/helpers/getTokenData";
+import { getCookieValue } from "@/lib/helpers/helperFunction";
 
 export const metadata = {
   title: "Order List",
@@ -21,26 +19,25 @@ const Orders = async ({ searchParams }) => {
   let page = Number((await spms["page"]) ?? "1");
   let perPage = Number((await spms["perPage"]) ?? "12");
   // let start=(Number(page)-1)*Number(perPage)
+  let userInfo = await getTokenData(await getCookieValue("token"));
 
-  // let userList = await userListAction(keyword);
-  let res = await fetch(
-    `${process.env.BASE_URL}/api/admin/order-list?keyword=${keyword}&page=${page}&perPage=${perPage}`
+  let { data } = await Axios.post(
+    `/api/user/order-list?keyword=${keyword}&userId=${userInfo?._id}&page=${page}&perPage=${perPage}`
   );
-  let data = await res.json();
-  // let { data } = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
+  // let data = await res.json();
   let entries = data?.orderList;
 
   return (
     <div>
       <div className="my-3">
-        <Form action={"/dashboard/admin/order-list"}>
+        <Form action={"/dashboard/user/order-list"}>
           <div className="join">
             <div className="">
               <input
                 name="keyword"
                 type="search"
                 className="input input-bordered join-item"
-                placeholder="Phone, Email or Status"
+                placeholder="Status"
               />
             </div>
             <div className="">
@@ -64,17 +61,11 @@ const Orders = async ({ searchParams }) => {
                     <th scope="col">#</th>
                     <th scope="col">Order Status</th>
                     <th scope="col">User-email</th>
-                    <th scope="col">User-phone</th>
-                    <th scope="col">User-Address</th>
                     <th scope="col">Payment</th>
                     <th scope="col">Method</th>
                     <th scope="col">Item</th>
                     <th scope="col">Total Price</th>
                     <th scope="col">Order Date</th>
-                    <th scope="col">Print</th>
-                    <th scope="col">Query</th>
-                    <th scope="col">Search</th>
-                    <th scope="col">Refund</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -85,8 +76,6 @@ const Orders = async ({ searchParams }) => {
                         <Status status={item.status} id={item._id.toString()} />
                       </td>
                       <td>{item?.user?.email} </td>
-                      <td>{item?.user?.phone} </td>
-                      <td>{item?.user?.address} </td>
                       <td>
                         {item?.payment?.refund === "refunded"
                           ? "Refunded"
@@ -99,36 +88,6 @@ const Orders = async ({ searchParams }) => {
                       <td>{<PriceFormat price={item.total} />} </td>
                       <td>
                         {moment(item?.createdAt).format("DD-MM-YY hh:mm a")}{" "}
-                      </td>
-                      <td>
-                        <ClientPage item={item} />
-                      </td>
-                      <td>
-                        <InfoModal
-                          value={{
-                            title: "Query",
-                            id: item.payment?.payment_id,
-                          }}
-                        />
-                      </td>
-                      <td>
-                        <InfoModal
-                          value={{
-                            title: "Search",
-                            id: item.payment?.trxn_id,
-                          }}
-                        />
-                      </td>
-                      <td>
-                        <RefundModal
-                          value={{
-                            title: "Refund",
-                            amount: item?.total,
-                            paymentID: item.payment?.payment_id,
-                            trxID: item.payment?.trxn_id,
-                            refund: item.payment?.refund,
-                          }}
-                        />
                       </td>
                     </tr>
                   ) : (
@@ -195,6 +154,8 @@ const Orders = async ({ searchParams }) => {
           perPage={perPage}
           spms1="keyword"
           spms1Value={keyword}
+          spms2="userId"
+          spms2Value={userInfo?._id}
         />
       </div>
     </div>

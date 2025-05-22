@@ -3,7 +3,15 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
-const Pagination = ({ page, perPage, total, spms1, spms1Value = "" }) => {
+const Pagination = ({
+  page,
+  perPage,
+  total,
+  spms1,
+  spms1Value = "",
+  spms2 = "",
+  spms2Value = "",
+}) => {
   let router = useRouter();
   let path = usePathname();
   // let searchParams = useSearchParams();
@@ -21,7 +29,9 @@ const Pagination = ({ page, perPage, total, spms1, spms1Value = "" }) => {
         disabled={page <= 1}
         onClick={() => {
           router.push(
-            `${path}?${spms1}=${spms1Value}&page=${page - 1}&perPage=${perPage}`
+            `${path}?${spms1}=${spms1Value}&${spms2}=${spms2Value}&page=${
+              page - 1
+            }&perPage=${perPage}`
           );
         }}
         className="btn btn-accent"
@@ -33,7 +43,7 @@ const Pagination = ({ page, perPage, total, spms1, spms1Value = "" }) => {
           className="btn"
           onClick={() => {
             router.push(
-              `${path}?${spms1}=${spms1Value}&page=1&perPage=${perPage}`
+              `${path}?${spms1}=${spms1Value}&${spms2}=${spms2Value}&page=1&perPage=${perPage}`
             );
           }}
         >
@@ -46,7 +56,7 @@ const Pagination = ({ page, perPage, total, spms1, spms1Value = "" }) => {
           key={i}
           onClick={() => {
             router.push(
-              `${path}?${spms1}=${spms1Value}&page=${item}&perPage=${perPage}`
+              `${path}?${spms1}=${spms1Value}&${spms2}=${spms2Value}&page=${item}&perPage=${perPage}`
             );
           }}
           // className={item==page?'my-3 btn btn-primary':'btn'}
@@ -62,22 +72,25 @@ const Pagination = ({ page, perPage, total, spms1, spms1Value = "" }) => {
         </button>
       ))}
       <span className={page >= totalPage - 10 ? "hidden" : ""}>
-        ......{" "}
+        ......
         <button
           className="btn"
           onClick={() => {
-            router.push(`${path}?page=${totalPage}&perPage=${perPage}`);
+            router.push(
+              `${path}?${spms1}=${spms1Value}&${spms2}=${spms2Value}&page=${totalPage}&perPage=${perPage}`
+            );
           }}
         >
-          {" "}
-          {totalPage}{" "}
+          {totalPage}
         </button>
       </span>
       <button
         disabled={page >= totalPage}
         onClick={() => {
           router.push(
-            `${path}?${spms1}=${spms1Value}&page=${page + 1}&perPage=${perPage}`
+            `${path}?${spms1}=${spms1Value}&${spms2}=${spms2Value}&page=${
+              page + 1
+            }&perPage=${perPage}`
           );
         }}
         className="btn btn-accent"

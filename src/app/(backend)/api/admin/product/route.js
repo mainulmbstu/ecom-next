@@ -70,23 +70,51 @@ export async function POST(req) {
 }
 //=============================
 export async function GET(req) {
-  let keyword = req.nextUrl.searchParams.get("keyword");
+  let keyword = req.nextUrl.searchParams.get("keyword") || "";
+  let catSlug = req.nextUrl.searchParams.get("category");
   let page = req.nextUrl.searchParams.get("page");
   let perPage = req.nextUrl.searchParams.get("perPage");
   let skip = (page - 1) * perPage;
-
+  let keyCat = await CategoryModel.findOne({ slug: catSlug });
+  if (keyCat?.parentId) {
+    keyCat = await CategoryModel.find({
+      $or: [{ _id: keyCat?._id }, { parentId: keyCat?._id }],
+    });
+  } else {
+    let category = await CategoryModel.find({});
+    let categoryList = await createCategories(category); // function below
+    let filtered = await categoryList.filter(
+      (parent) => parent?.slug === catSlug
+    );
+    keyCat = getPlainCatList(filtered);
+  }
   try {
     await dbConnect();
-    const total = await ProductModel.find({
-      $or: [{ name: { $regex: keyword, $options: "i" } }],
-    });
+    const total = await ProductModel.find(
+      keyCat?.length
+        ? {
+            $and: [
+              { name: { $regex: keyword, $options: "i" } },
+              { category: keyCat },
+            ],
+          }
+        : { name: { $regex: keyword, $options: "i" } }
+    );
 
-    const productList = await ProductModel.find({
-      $or: [{ name: { $regex: keyword, $options: "i" } }],
-    })
-      .populate("user", "name", UserModel)
+    const productList = await ProductModel.find(
+      keyCat?.length
+        ? {
+            $and: [
+              { name: { $regex: keyword, $options: "i" } },
+              { category: keyCat },
+            ],
+          }
+        : { name: { $regex: keyword, $options: "i" } }
+    )
+      .populate("user", "name email", UserModel)
       .populate("category", "name", CategoryModel)
-      // .populate({ path: "category", select: "name", model: CategoryModel })
+      // .populate({ path: "category", select: "name email", model: CategoryModel })
+      // .populate({ path: "category", select: "-email", model: CategoryModel })
       .skip(skip)
       .limit(perPage)
       .sort({ createdAt: -1 });
@@ -97,3 +125,35 @@ export async function GET(req) {
     return Response.json({ message: await getErrorMessage(error) });
   }
 }
+
+let createCategories = async (category, parentId = null) => {
+  let categoryList = [];
+  let filteredCat;
+  if (parentId == null) {
+    filteredCat = await category.filter((item) => item.parentId == undefined);
+  } else {
+    filteredCat = await category.filter((item) => item.parentId == parentId);
+  }
+  for (let v of filteredCat) {
+    categoryList.push({
+      _id: v._id,
+      name: v.name,
+      slug: v.slug,
+      user: v.user,
+      picture: v.picture,
+      parentId: v.parentId,
+      updatedAt: v.updatedAt,
+      children: await createCategories(category, v._id),
+    });
+  }
+  return categoryList;
+};
+let getPlainCatList = (filtered, list = []) => {
+  for (let v of filtered) {
+    list.push(v);
+    if (v.children.length > 0) {
+      getPlainCatList(v.children, list);
+    }
+  }
+  return list;
+};

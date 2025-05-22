@@ -26,7 +26,7 @@ const NestedCategoryData = () => {
               <span onMouseOver={() => setShow(true)}>{v.name} </span>
             )}
             {v.children.length > 0 ? (
-              <ul className={show ? '' : "hidden"}>
+              <ul className={show ? "" : "hidden"}>
                 {getCategoryList(v.children)}{" "}
               </ul>
             ) : null}
@@ -57,7 +57,10 @@ const NestedCategoryData = () => {
   return (
     <div className="catPage">
       <ul>
-        <Link href={"/offers"} className=" me-3 my-auto text-decoration-none">
+        <Link
+          href={"/products/offers"}
+          className=" me-3 my-auto text-decoration-none"
+        >
           OFFERS
         </Link>
         {getCategoryList(category)}

@@ -17,7 +17,7 @@ const UserMenu = () => {
 
     {
       name: "My Orders",
-      href: "/dashboard/user/orders",
+      href: "/dashboard/user/order-list",
       icon: <FaListOl />,
     },
   ];

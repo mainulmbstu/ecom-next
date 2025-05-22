@@ -12,25 +12,28 @@ export async function GET(req) {
   try {
     await dbConnect();
     await OrderModel.deleteMany({ "payment.status": false });
-    const total = await OrderModel
-      .find
-      // {
-      //   $or: [
-      //     { email: { $regex: keyword, $options: "i" } },
-      //     { name: { $regex: keyword, $options: "i" } },
-      //   ],
-      // },
-      ();
+    const searchUser = await UserModel.find(
+      {
+        $or: [
+          { email: { $regex: keyword, $options: "i" } },
+          { phone: { $regex: keyword, $options: "i" } },
+        ],
+      },
+      { name: 1, _id: 1 }
+    );
+    const total = await OrderModel.find({
+      $or: [
+        { status: { $regex: keyword, $options: "i" } },
+        { user: searchUser[0]?._id },
+      ],
+    });
 
-    const orderList = await OrderModel
-      .find
-      // {
-      //   $or: [
-      //     { email: { $regex: keyword, $options: "i" } },
-      //     { name: { $regex: keyword, $options: "i" } },
-      //   ],
-      // },
-      ()
+    const orderList = await OrderModel.find({
+      $or: [
+        { status: { $regex: keyword, $options: "i" } },
+        { user: searchUser[0]?._id },
+      ],
+    })
       .populate("user", { password: 0 }, UserModel)
       .skip(skip)
       .limit(perPage)

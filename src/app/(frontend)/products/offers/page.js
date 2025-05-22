@@ -1,28 +1,31 @@
 import * as motion from "motion/react-client";
 
 import Pagination from "@/lib/components/pagination";
-import Form from "next/form";
 import Loadmore from "@/lib/components/Loadmore";
-import { allProductAction } from "./action";
-import Card from "../card/Card";
+import Card from "@/lib/components/card/Card";
+import Form from "next/form";
 
-const Home1 = async ({ searchParams }) => {
+export const generateMetadata = async () => {
+  return {
+    title: "Offers",
+    description: "Offers",
+  };
+};
+const Offers = async ({ searchParams }) => {
   let spms = await searchParams;
   let keyword = (await spms["keyword"]) ?? "";
   let page = Number((await spms["page"]) ?? "1");
   let perPage = Number((await spms["perPage"]) ?? "30");
 
-  let data = await allProductAction(keyword, page, perPage);
-
-  // let res = await fetch(
-  //   `${process.env.BASE_URL}/api/user/product?keyword=${keyword}&page=${page}&perPage=${perPage}`
-  // );
-  // let data = await res.json();
+  let res = await fetch(
+    `${process.env.BASE_URL}/api/user/offers?keyword=${keyword}&page=${page}&perPage=${perPage}`
+  );
+  let data = await res.json();
   let entries = data?.list;
   return (
     <div className="p-2">
       <div className="my-3">
-        <Form action={"/"}>
+        <Form action={`/products/offers`}>
           <div className="join">
             <div className="">
               <input
@@ -30,7 +33,7 @@ const Home1 = async ({ searchParams }) => {
                 name="keyword"
                 type="search"
                 className="input input-bordered join-item"
-                placeholder="name or description"
+                placeholder="Product name"
               />
             </div>
             <div className="">
@@ -80,4 +83,4 @@ const Home1 = async ({ searchParams }) => {
   );
 };
 
-export default Home1;
+export default Offers;
