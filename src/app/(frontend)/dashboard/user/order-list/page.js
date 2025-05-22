@@ -3,7 +3,6 @@ import Pagination from "@/lib/components/pagination";
 import Form from "next/form";
 import Image from "next/image";
 import Link from "next/link";
-import Status from "./status";
 import PriceFormat from "@/lib/components/PriceFormat";
 import { Axios } from "@/lib/helpers/AxiosInstance";
 import { getTokenData } from "@/lib/helpers/getTokenData";
@@ -72,9 +71,8 @@ const Orders = async ({ searchParams }) => {
                   {entries?.length ? (
                     <tr className="hover:bg-zinc-200">
                       <td>{i + 1} </td>
-                      <td>
-                        <Status status={item.status} id={item._id.toString()} />
-                      </td>
+
+                      <td>{item?.status} </td>
                       <td>{item?.user?.email} </td>
                       <td>
                         {item?.payment?.refund === "refunded"
