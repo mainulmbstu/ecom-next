@@ -1,0 +1,158 @@
+[{
+  "_id": {
+    "$oid": "67e4edb89a7592149d69b11d"
+  },
+  "offer": 0,
+  "color": [
+    "black",
+    "red"
+  ],
+  "picture": [
+    {
+      "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1739850899/dir0m1r7wi2bphos1uqk.jpg"
+    }
+  ],
+  "amount": 1,
+  "review": 0,
+  "rating": 0,
+  "ratingNo": 0,
+  "like": 0,
+  "name": "MMMZZ",
+  "slug": "mmmzz",
+  "category": {
+    "$oid": "67e4e23ec04979486f1d7d27"
+  },
+  "categoryName": "IPHONE15",
+  "description": "sssssssssss",
+  "price": 10,
+  "quantity": 95,
+  "user": {
+    "$oid": "67d7f2e1b1e5d17a69818753"
+  },
+  "createdAt": {
+    "$date": "2025-03-27T06:18:32.365Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-16T06:53:44.128Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67e4f0b04c3067127b3e2959"
+  },
+  "offer": 10,
+  "color": [
+    "black",
+    "red",
+    "blue"
+  ],
+  "picture": [
+    {
+      "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1747719628/ecomNextProduct/rrsv7lambbtcybleqwzk.webp",
+      "public_id": "ecomNextProduct/rrsv7lambbtcybleqwzk"
+    }
+  ],
+  "amount": 1,
+  "review": 0,
+  "rating": 0,
+  "ratingNo": 0,
+  "like": 0,
+  "name": "IPHONE15",
+  "slug": "iphone15",
+  "category": {
+    "$oid": "67e4e23ec04979486f1d7d27"
+  },
+  "categoryName": "IPHONE15",
+  "description": "uuuuuuuuuu",
+  "price": 1,
+  "quantity": 27,
+  "user": {
+    "$oid": "67d7f2e1b1e5d17a69818753"
+  },
+  "createdAt": {
+    "$date": "2025-03-27T06:31:12.475Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-20T06:20:32.885Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "682858ef5cfc60d636fecdf0"
+  },
+  "offer": 5,
+  "color": [
+    "black",
+    "red",
+    "blue"
+  ],
+  "picture": [
+    {
+      "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1747719514/ecomNextProduct/qopwyqicitpzo6nyi2ev.webp",
+      "public_id": "ecomNextProduct/qopwyqicitpzo6nyi2ev"
+    }
+  ],
+  "amount": 1,
+  "review": 0,
+  "rating": 0,
+  "ratingNo": 0,
+  "like": 0,
+  "name": "TEER ATTA",
+  "slug": "teer-atta",
+  "category": {
+    "$oid": "682d6e1785553eb793014424"
+  },
+  "description": "mmmmmmmmmmmm",
+  "price": 1,
+  "quantity": 97,
+  "user": {
+    "$oid": "67e658c8508e35794e76a814"
+  },
+  "createdAt": {
+    "$date": "2025-05-17T09:37:52.114Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-22T06:14:05.902Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "682d6f4585553eb793014457"
+  },
+  "offer": 0,
+  "color": [
+    "black",
+    "red"
+  ],
+  "picture": [
+    {
+      "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1739850899/dir0m1r7wi2bphos1uqk.jpg"
+    }
+  ],
+  "amount": 1,
+  "review": 0,
+  "rating": 0,
+  "ratingNo": 0,
+  "like": 0,
+  "name": "DELL-1",
+  "slug": "dell-1",
+  "category": {
+    "$oid": "682d8e1285553eb7930145af"
+  },
+  "description": "ggggggggggggg",
+  "price": 1,
+  "quantity": 10,
+  "user": {
+    "$oid": "67e658c8508e35794e76a814"
+  },
+  "createdAt": {
+    "$date": "2025-05-21T06:14:29.855Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-22T02:43:12.991Z"
+  },
+  "__v": 0
+}]

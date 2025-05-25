@@ -6,6 +6,7 @@ import Link from "next/link";
 import DeleteModal from "@/lib/components/DeleteModal";
 import { deleteAction } from "./action";
 import EditModal from "./EditModal";
+import SubmitButton from "@/lib/components/SubmitButton";
 
 const CategoryList = async ({ searchParams }) => {
   let spms = await searchParams;
@@ -36,7 +37,7 @@ const CategoryList = async ({ searchParams }) => {
               />
             </div>
             <div className="">
-              <button className="btn join-item">Search</button>
+              <SubmitButton title={"Search"} design={"btn join-item"} />
             </div>
           </div>
         </Form>

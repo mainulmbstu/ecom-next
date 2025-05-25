@@ -1,7 +1,7 @@
 import mongoose, { connection } from "mongoose";
 
-// const URI = process.env.MONGO_LOCAL;
-const URI = process.env.MONGO_ATLAS;
+const URI = process.env.MONGO_LOCAL;
+// const URI = process.env.MONGO_ATLAS;
 
 export default async function dbConnect() {
   if (connection.readyState === 1) {

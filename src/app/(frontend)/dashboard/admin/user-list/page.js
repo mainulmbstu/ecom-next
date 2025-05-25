@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Axios } from "@/lib/helpers/helperFunction";
 import DeleteModal from "@/lib/components/DeleteModal";
 import { deleteAction } from "./deleteAction";
+import SubmitButton from "@/lib/components/SubmitButton";
 
 export const metadata = {
   title: "User List",
@@ -39,14 +40,18 @@ const Users = async ({ searchParams }) => {
                 name="keyword"
                 type="search"
                 className="input input-bordered join-item"
-                placeholder="Name or Email"
+                placeholder="Name or Email or phone"
               />
             </div>
             <div className="">
-              <button className="btn join-item">Search</button>
+              <SubmitButton title={"Search"} design={"btn join-item"} />
             </div>
           </div>
         </Form>
+      </div>
+      <div className=" card p-2 mt-5">
+        <h4>Total Users: ( {data?.total})</h4>
+        {/* <h4>Total Sale: {<PriceFormat price={totalPrice} />}</h4> */}
       </div>
       <div className="">
         <table className="table">

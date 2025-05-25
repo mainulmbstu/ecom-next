@@ -1,0 +1,38 @@
+[{
+  "_id": {
+    "$oid": "67e658c8508e35794e76a814"
+  },
+  "name": "MD. MAINUL HASAN",
+  "email": "mainul1945@gmail.com",
+  "phone": "01743914780",
+  "address": "Mousha Kathalia, Delduar",
+  "password": "$2a$10$22CrLd3wkHDB2bHGJCKnR.8FPVNPh98VGpsWA7YGnhabhPpqXAGoq",
+  "role": "admin",
+  "isVerified": true,
+  "createdAt": {
+    "$date": "2025-03-28T08:07:36.073Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-28T08:07:36.073Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682c28ea9ce636762957cad7"
+  },
+  "name": "MD.HASAN",
+  "email": "mainul19451@gmail.com",
+  "phone": "01743914781",
+  "address": "Mousha Kathalia, Delduar",
+  "password": "$2a$10$22CrLd3wkHDB2bHGJCKnR.8FPVNPh98VGpsWA7YGnhabhPpqXAGoq",
+  "role": "user",
+  "isVerified": true,
+  "createdAt": {
+    "$date": "2025-03-28T08:07:36.073Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-28T08:07:36.073Z"
+  },
+  "__v": 0
+}]

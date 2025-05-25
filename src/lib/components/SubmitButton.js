@@ -10,8 +10,7 @@ const SubmitButton = ({ title, design, disable }) => {
       disabled={pending || disable}
       className={`btn  disabled:text-black ${design}`}
     >
-      {" "}
-      {pending ? "Submitting..." : title}{" "}
+      {pending ? "Submitting..." : title}
     </button>
   );
 };

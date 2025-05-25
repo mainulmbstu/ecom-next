@@ -18,8 +18,8 @@ const ImagePage = ({ picture, blurData }) => {
                   setImg(item?.secure_url);
                   setindex(i);
                 }}
-                blurDataURL={blurData}
-                placeholder="blur"
+                // blurDataURL={blurData}
+                // placeholder="blur"
                 src={`${item?.secure_url}`}
                 alt="img"
                 width={70}
@@ -38,8 +38,8 @@ const ImagePage = ({ picture, blurData }) => {
             fill
             priority={true}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            blurDataURL={blurData}
-            placeholder="blur"
+            // blurDataURL={blurData}
+            // placeholder="blur"
             className=" object-contain"
             src={img || (picture?.length && picture[0]?.secure_url)}
             alt=""

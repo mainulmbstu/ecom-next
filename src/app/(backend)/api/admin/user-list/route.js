@@ -15,6 +15,7 @@ export async function GET(req) {
         $or: [
           { email: { $regex: keyword, $options: "i" } },
           { name: { $regex: keyword, $options: "i" } },
+          { phone: { $regex: keyword, $options: "i" } },
         ],
       },
       { password: 0 }
@@ -25,6 +26,7 @@ export async function GET(req) {
         $or: [
           { email: { $regex: keyword, $options: "i" } },
           { name: { $regex: keyword, $options: "i" } },
+          { phone: { $regex: keyword, $options: "i" } },
         ],
       },
       { password: 0 }

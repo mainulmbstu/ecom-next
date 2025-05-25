@@ -84,3 +84,25 @@ export const deleteAction = async (id = "") => {
     return { message: await getErrorMessage(error) };
   }
 };
+
+//==============================
+export const offerAction = async (selectIdArr, formData) => {
+  let offer = formData.get("offer");
+  console.log(selectIdArr, offer);
+  try {
+    await dbConnect();
+    for (let id of selectIdArr) {
+      await ProductModel.findByIdAndUpdate(id, { offer }, { new: true });
+    }
+
+    revalidatePath("/", "layout");
+
+    return {
+      message: `${offer} percent offer has been applied successfully`,
+      success: true,
+    };
+  } catch (error) {
+    console.log(error);
+    return { message: await getErrorMessage(error) };
+  }
+};

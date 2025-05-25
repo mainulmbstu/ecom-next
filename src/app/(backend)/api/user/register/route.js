@@ -19,7 +19,7 @@ export async function POST(req) {
   let phone = formData.get("phone");
   let address = formData.get("address");
   let password = formData.get("password");
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !phone) {
     return Response.json({ message: "Please enter all required fields" });
   }
   //for image
@@ -29,6 +29,10 @@ export async function POST(req) {
     const userExist = await UserModel.findOne({ email });
     if (userExist) {
       return Response.json({ message: "User already exist" });
+    }
+    const phoneExist = await UserModel.findOne({ phone });
+    if (phoneExist) {
+      return Response.json({ message: "phone number already exist" });
     }
     let url = "";
     if (file?.size) {

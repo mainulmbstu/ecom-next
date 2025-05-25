@@ -7,6 +7,7 @@ import PriceFormat from "@/lib/components/PriceFormat";
 import { Axios } from "@/lib/helpers/AxiosInstance";
 import { getTokenData } from "@/lib/helpers/getTokenData";
 import { getCookieValue } from "@/lib/helpers/helperFunction";
+import SubmitButton from "@/lib/components/SubmitButton";
 
 export const metadata = {
   title: "Order List",
@@ -40,7 +41,7 @@ const Orders = async ({ searchParams }) => {
               />
             </div>
             <div className="">
-              <button className="btn join-item">Search</button>
+              <SubmitButton title={"Search"} design={"btn join-item"} />
             </div>
           </div>
         </Form>

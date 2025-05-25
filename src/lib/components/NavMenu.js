@@ -68,6 +68,15 @@ const NavMenu = () => {
                 About
               </Link>
             </li>
+            <li className=" border-b-1 border-b-zinc-50 hover:inset-shadow-sm  py-2 md:py-0 hover:inset-shadow-indigo-300 transition-all">
+              <Link
+                className={path === "/contact" ? "underline text-blue-700" : ""}
+                onClick={menuClose}
+                href={"/contact"}
+              >
+                Contact
+              </Link>
+            </li>
 
             {userInfo ? (
               <>

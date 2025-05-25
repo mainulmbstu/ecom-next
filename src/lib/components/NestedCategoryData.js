@@ -10,7 +10,7 @@ const NestedCategoryData = () => {
   let [show, setShow] = useState(false);
   let getCategoryList = (category) => {
     let myCategories = [];
-    if (category.length) {
+    if (category?.length) {
       for (let v of category) {
         myCategories.push(
           <li key={v.slug}>

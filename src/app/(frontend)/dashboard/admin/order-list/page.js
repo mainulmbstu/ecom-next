@@ -10,6 +10,7 @@ import PriceFormat from "@/lib/components/PriceFormat";
 import ClientPage from "./clientPage";
 import InfoModal from "./InfoModal";
 import RefundModal from "./RefundModal";
+import SubmitButton from "@/lib/components/SubmitButton";
 
 export const metadata = {
   title: "Order List",
@@ -44,7 +45,7 @@ const Orders = async ({ searchParams }) => {
               />
             </div>
             <div className="">
-              <button className="btn join-item">Search</button>
+              <SubmitButton title={"Search"} design={"btn join-item"} />
             </div>
           </div>
         </Form>
@@ -75,6 +76,7 @@ const Orders = async ({ searchParams }) => {
                     <th scope="col">Query</th>
                     <th scope="col">Search</th>
                     <th scope="col">Refund</th>
+                    <th scope="col">Delete</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -127,6 +129,15 @@ const Orders = async ({ searchParams }) => {
                             paymentID: item.payment?.payment_id,
                             trxID: item.payment?.trxn_id,
                             refund: item.payment?.refund,
+                          }}
+                        />
+                      </td>
+                      <td>
+                        <DeleteModal
+                          value={{
+                            id: item?._id.toString(),
+                            message: `Do you want to delete the order of ${item?.user?.name}, orderId: ${item?._id}`,
+                            action: deleteAction,
                           }}
                         />
                       </td>

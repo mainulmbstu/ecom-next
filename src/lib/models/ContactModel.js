@@ -1,20 +1,22 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const contactSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
+    name: { type: String, required: true, trim: true },
+    email: { type: String, required: true, trim: true },
     message: { type: String, required: true },
-    replies: [{
-      userName: String,
-      msg: String,
-      date:Date
-    }],
+    replies: [
+      {
+        userName: String,
+        msg: String,
+        date: Date,
+      },
+    ],
   },
   { timestamps: true }
 );
-
-const ContactModel = mongoose.model("Contact", contactSchema);
+export const ContactModel =
+  mongoose.models?.contacts || mongoose.model("contacts", contactSchema);
 //=============================
 const contactReplySchema = new mongoose.Schema(
   {
@@ -22,18 +24,19 @@ const contactReplySchema = new mongoose.Schema(
     reply: { type: String, required: true },
     msgId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Contact", //collection name in mongoose.model('User', userSchema)
+      ref: "contact", //collection name in mongoose.model('user', userSchema)
       required: true,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", //collection name in mongoose.model('User', userSchema)
+      ref: "user", //collection name in mongoose.model('user', userSchema)
       required: true,
     },
   },
   { timestamps: true }
 );
-
-const ContactReplyModel = mongoose.model("ContactReply", contactReplySchema);
+export const ContactReplyModel =
+  mongoose.models?.contactReplies ||
+  mongoose.model("contactReplies", contactReplySchema);
 
 module.exports = { ContactModel, ContactReplyModel };
