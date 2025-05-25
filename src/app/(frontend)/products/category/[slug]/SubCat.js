@@ -20,9 +20,9 @@ const SubCat = ({ slug }) => {
                 <Image
                   src={item?.picture?.secure_url}
                   priority={true}
-                  className="w-32 min-h-20 h-auto m-auto"
+                  className="w-32 min-h-20 h-15 m-auto object-contain"
                   width={200}
-                  height={0}
+                  height={100}
                   alt=""
                 />
                 <p className=" text-center">{item?.name} </p>

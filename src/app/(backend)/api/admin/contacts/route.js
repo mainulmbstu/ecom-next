@@ -2,7 +2,7 @@ import dbConnect from "@/lib/helpers/dbConnect";
 import { getErrorMessage } from "@/lib/helpers/getErrorMessage";
 import { ContactModel } from "@/lib/models/ContactModel";
 
-export async function POST(req) {
+export async function GET(req) {
   let keyword = req.nextUrl.searchParams.get("keyword");
   let page = req.nextUrl.searchParams.get("page");
   let perPage = req.nextUrl.searchParams.get("perPage");

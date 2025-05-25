@@ -38,5 +38,3 @@ const contactReplySchema = new mongoose.Schema(
 export const ContactReplyModel =
   mongoose.models?.contactReplies ||
   mongoose.model("contactReplies", contactReplySchema);
-
-module.exports = { ContactModel, ContactReplyModel };

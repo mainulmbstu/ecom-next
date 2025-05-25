@@ -18,7 +18,7 @@ const Contact = async ({ searchParams }) => {
   let page = Number((await spms["page"]) ?? "1");
   let perPage = Number((await spms["perPage"]) ?? "12");
   let userInfo = await getTokenData(await getCookieValue("token"));
-  let { data } = await Axios.post(
+  let { data } = await Axios.get(
     `/api/admin/contacts?keyword=${keyword}&page=${page}&perPage=${perPage}`
   );
   let contacts = data?.list;

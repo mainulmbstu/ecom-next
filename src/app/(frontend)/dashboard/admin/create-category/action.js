@@ -36,7 +36,7 @@ export const editAction = async (id, formData) => {
     revalidatePath("/", "layout");
     return {
       success: true,
-      message: `Category Updated successfully`,
+      message: `Category ${name} has been Updated successfully`,
     };
   } catch (error) {
     console.log(error);
