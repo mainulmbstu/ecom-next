@@ -44,7 +44,6 @@ const Contact = async ({ searchParams }) => {
                 </p>
 
                 <hr className=" w-25" />
-                <h5>{item?.replies?.length ? "An Admin" : "No reply yet"}</h5>
                 {item?.replies &&
                   item?.replies?.reverse().map((rep, i, arr) => {
                     return (
@@ -52,6 +51,7 @@ const Contact = async ({ searchParams }) => {
                         <p className=" font-bold">
                           Reply-{arr?.length - i}: {rep.msg}
                         </p>
+                        <p className="">Replied by: {rep.userName}</p>
                         <p>
                           Time: {moment(rep?.date).fromNow()},
                           {new Date(rep?.date).toLocaleString()}{" "}
