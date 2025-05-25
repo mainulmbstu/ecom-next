@@ -5,6 +5,7 @@ import Form from "next/form";
 import Loadmore from "@/lib/components/Loadmore";
 import { allProductAction } from "./action";
 import Card from "../card/Card";
+import HomeCatPage from "./HomeCatPage";
 
 const Home1 = async ({ searchParams }) => {
   let spms = await searchParams;
@@ -39,6 +40,7 @@ const Home1 = async ({ searchParams }) => {
           </div>
         </Form>
       </div>
+      <HomeCatPage />
       <h5>Total product found {data?.total} </h5>
       <div className=" grid md:grid-cols-4 gap-6">
         {entries?.length ? (

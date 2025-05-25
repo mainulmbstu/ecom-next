@@ -4,6 +4,7 @@ import Pagination from "@/lib/components/pagination";
 import Form from "next/form";
 import Loadmore from "@/lib/components/Loadmore";
 import Card from "@/lib/components/card/Card";
+import SubCat from "./SubCat";
 
 export const generateMetadata = async ({ params }) => {
   let { slug } = await params;
@@ -44,6 +45,7 @@ const CategoryPage = async ({ params, searchParams }) => {
           </div>
         </Form>
       </div>
+      <SubCat slug={slug} />
       <h5>Total product found {data?.total} </h5>
       <div className=" grid md:grid-cols-4 gap-6">
         {entries?.length ? (
