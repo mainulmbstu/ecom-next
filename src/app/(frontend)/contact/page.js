@@ -54,7 +54,7 @@ const Contact = async ({ searchParams }) => {
                         <p className="">Replied by: {rep.userName}</p>
                         <p>
                           Time: {moment(rep?.date).fromNow()},
-                          {new Date(rep?.date).toLocaleString()}{" "}
+                          {moment(rep?.date).format("DD-MM-YY hh:mm a")}
                         </p>
                       </div>
                     );

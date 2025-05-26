@@ -12,7 +12,7 @@ const EditModal = ({ value }) => {
   let ref = useRef();
   let [loading, setLoading] = useState(false);
   let [picture, setPicture] = useState("");
-  let { catPlain } = useAuth();
+  let { catPlain, catPlainFunc } = useAuth();
   // console.log(value);
   let clientAction = async (formData) => {
     setLoading(true);
@@ -21,6 +21,7 @@ const EditModal = ({ value }) => {
     if (data?.success) {
       // Swal.fire("Success", data?.message, "success");
       toast.success(data?.message);
+      catPlainFunc();
     } else {
       // Swal.fire("Error", data?.message, "error");
       toast.error(data?.message);
