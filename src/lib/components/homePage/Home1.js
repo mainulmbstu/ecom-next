@@ -65,14 +65,22 @@ const Home1 = async ({ searchParams }) => {
             <p>No offer available</p>
           )}
 
-          <div className="">
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{
+              delay: 1.5,
+              type: "spring",
+              stiffness: 100,
+            }}
+          >
             <Link
               href={"/products/offers"}
               className="flex h-100 bg-black justify-center items-center hover:bg-gray-800"
             >
               <span className=" text-white text-3xl">All Offers</span>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
 
