@@ -55,7 +55,7 @@ export async function GET(req, res) {
       statusMessage: result?.statusMessage,
     };
   // You may use here WebSocket, server-sent events, or other methods to notify your client
-  if (response?.statusCode !== "0000") {
+  if (response?.statusCode === "0000") {
     redirect(`/products/payment/success?paymentID=${paymentID}`);
   } else {
     await OrderModel.findOneAndDelete({

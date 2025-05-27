@@ -13,7 +13,7 @@ const Card = async ({ item }) => {
   let blurData = await getBase64(item?.picture && item?.picture[0]?.secure_url);
   return (
     <div className="h-full">
-      <div className="card shadow-xl h-full flex flex-col">
+      <div className="card shadow-xl h-full flex flex-col hover:cursor-pointer hover:bg-slate-300">
         <figure className=" h-40 md:max-h-80 relative">
           <Image
             fill

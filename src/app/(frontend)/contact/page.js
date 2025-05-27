@@ -1,9 +1,7 @@
-import { Axios } from "@/lib/helpers/AxiosInstance";
 import ContactPage from "./ContactPage";
-import { getTokenData } from "@/lib/helpers/getTokenData";
-import { getCookieValue } from "@/lib/helpers/helperFunction";
 import moment from "moment";
 import Pagination from "@/lib/components/pagination";
+import { getMessageAction } from "./action";
 
 export const metadata = {
   title: "Contact",
@@ -14,10 +12,8 @@ const Contact = async ({ searchParams }) => {
   let spms = await searchParams;
   let page = Number((await spms["page"]) ?? "1");
   let perPage = Number((await spms["perPage"]) ?? "12");
-  let userInfo = await getTokenData(await getCookieValue("token"));
-  let { data } = await Axios.get(
-    `/api/user/contacts?keyword=${userInfo?.email}&page=${page}&perPage=${perPage}`
-  );
+
+  let data = await getMessageAction(page, perPage);
   let contacts = data?.list;
   return (
     <div>
@@ -69,8 +65,8 @@ const Contact = async ({ searchParams }) => {
           page={page}
           perPage={perPage}
           spms1="keyword"
-          spms1Value={userInfo?.email}
-          spms2="userId"
+          spms1Value={""}
+          spms2=""
           spms2Value={""}
         />
       </div>

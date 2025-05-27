@@ -4,10 +4,16 @@ export const metadata = {
 };
 
 const About = async () => {
+  let mmm = async () => {
+    "use server";
+    console.log(22222222222);
+  };
   return (
     <div className="">
       <h2>About</h2>
-      <button className="btn">test</button>
+      <form action={mmm}>
+        <button className="btn">test</button>
+      </form>
     </div>
   );
 };

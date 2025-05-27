@@ -6,6 +6,7 @@ import Pagination from "@/lib/components/pagination";
 import Form from "next/form";
 import SubmitButton from "@/lib/components/SubmitButton";
 import ReplyModal from "./ReplyModal";
+import { getAllAction } from "./action";
 
 export const metadata = {
   title: "Contact",
@@ -17,10 +18,9 @@ const Contact = async ({ searchParams }) => {
   let keyword = (await spms["keyword"]) ?? "";
   let page = Number((await spms["page"]) ?? "1");
   let perPage = Number((await spms["perPage"]) ?? "12");
-  let userInfo = await getTokenData(await getCookieValue("token"));
-  let { data } = await Axios.get(
-    `/api/admin/contacts?keyword=${keyword}&page=${page}&perPage=${perPage}`
-  );
+  // let userInfo = await getTokenData(await getCookieValue("token"));
+
+  let data = await getAllAction(keyword, page, perPage);
   let contacts = data?.list;
   let unread =
     contacts?.length && contacts.filter((item) => item?.replies?.length === 0);
@@ -91,7 +91,7 @@ const Contact = async ({ searchParams }) => {
                 <p>email: {item.email} </p>
                 <p>Message: {item.message} </p>
                 <ReplyModal
-                  cid={item?._id}
+                  cid={item?._id.toString()}
                   name={item?.name}
                   title={item?.replies?.length ? "Replied" : "Reply"}
                   design={item?.replies?.length ? "btn-success" : "btn-error"}
@@ -124,7 +124,7 @@ const Contact = async ({ searchParams }) => {
           page={page}
           perPage={perPage}
           spms1="keyword"
-          spms1Value={userInfo?.email}
+          spms1Value={keyword}
           spms2="userId"
           spms2Value={""}
         />

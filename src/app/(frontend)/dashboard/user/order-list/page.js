@@ -4,10 +4,8 @@ import Form from "next/form";
 import Image from "next/image";
 import Link from "next/link";
 import PriceFormat from "@/lib/components/PriceFormat";
-import { Axios } from "@/lib/helpers/AxiosInstance";
-import { getTokenData } from "@/lib/helpers/getTokenData";
-import { getCookieValue } from "@/lib/helpers/helperFunction";
 import SubmitButton from "@/lib/components/SubmitButton";
+import { orderAction } from "./action";
 
 export const metadata = {
   title: "Order List",
@@ -17,14 +15,10 @@ const Orders = async ({ searchParams }) => {
   let spms = await searchParams;
   let keyword = (await spms["keyword"]) ?? "";
   let page = Number((await spms["page"]) ?? "1");
-  let perPage = Number((await spms["perPage"]) ?? "12");
+  let perPage = Number((await spms["perPage"]) ?? "1");
   // let start=(Number(page)-1)*Number(perPage)
-  let userInfo = await getTokenData(await getCookieValue("token"));
 
-  let { data } = await Axios.post(
-    `/api/user/order-list?keyword=${keyword}&userId=${userInfo?._id}&page=${page}&perPage=${perPage}`
-  );
-  // let data = await res.json();
+  let data = await orderAction(keyword, page, perPage);
   let entries = data?.orderList;
 
   return (
@@ -153,8 +147,8 @@ const Orders = async ({ searchParams }) => {
           perPage={perPage}
           spms1="keyword"
           spms1Value={keyword}
-          spms2="userId"
-          spms2Value={userInfo?._id}
+          spms2=""
+          spms2Value={""}
         />
       </div>
     </div>

@@ -4,34 +4,43 @@ import dbConnect from "@/lib/helpers/dbConnect";
 import { getErrorMessage } from "@/lib/helpers/getErrorMessage";
 import { getTokenData } from "@/lib/helpers/getTokenData";
 import { getCookieValue } from "@/lib/helpers/helperFunction";
-import { CommentModel } from "@/lib/models/CommentModel";
 import { ContactModel, ContactReplyModel } from "@/lib/models/ContactModel";
-import { ProductModel } from "@/lib/models/productModel";
 import { revalidatePath } from "next/cache";
 
 //===========================================================
-export const contactAction = async (formData) => {
-  let name = formData.get("name");
-  let email = formData.get("email");
-  let message = formData.get("message");
+export const getAllAction = async (keyword, page = 1, perPage) => {
+  let skip = (page - 1) * perPage;
+  let editKey = keyword === "unread" ? "" : keyword;
   try {
     await dbConnect();
-    await ContactModel.create({ name, email, message });
-    revalidatePath("/", "layout");
+
+    const total = await ContactModel.find({
+      email: { $regex: editKey, $options: "i" },
+    });
+
+    const list = await ContactModel.find({
+      email: { $regex: editKey, $options: "i" },
+    })
+      .skip(skip)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
+    let unread =
+      list?.length && list.filter((item) => item?.replies?.length === 0);
+
     return {
-      success: true,
-      message: `message has been sent successfully`,
+      list: keyword === "unread" ? unread : list,
+      total: keyword === "unread" ? unread?.length : total?.length,
     };
   } catch (error) {
     console.log(error);
     return { message: await getErrorMessage(error) };
   }
 };
+
 //=====================================
 export const replyAction = async (cid, formData) => {
   let reply = formData.get("reply");
   let userInfo = await getTokenData(await getCookieValue("token"));
-  console.log(reply);
   try {
     await dbConnect();
     let findmsg = await ContactModel.findById(cid);
