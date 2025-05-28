@@ -67,7 +67,7 @@ const Page2 = () => {
         </span>{" "}
       </p>
       <hr />
-      <div className="grid grid-cols-2 gap-2">
+      <div className="md:grid grid-cols-2 gap-2">
         <div className=" p-2  border mt-2">
           <div>
             <Form action={clientAction} className="w-64">
