@@ -1,14 +1,16 @@
 "use client";
+import dynamic from "next/dynamic";
 
 import { useEffect, useState } from "react";
-import Chart from "react-apexcharts";
 
+const Chart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 const TopSellingChart = ({ topProds }) => {
   let prodName = topProds?.map((item) => item?.name);
   let prodSale = topProds?.map((item) => item?.totalSale);
 
   const [state, setstate] = useState("");
-
   useEffect(() => {
     setstate({
       options: {

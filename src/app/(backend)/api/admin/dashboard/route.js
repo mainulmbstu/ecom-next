@@ -4,7 +4,6 @@ import { OrderModel } from "@/lib/models/OrderModel";
 
 export async function POST(req) {
   let { startDate, endDate } = await req.json();
-  console.log(startDate, endDate);
   try {
     let sdate = new Date(startDate);
     let edate = new Date(endDate);
