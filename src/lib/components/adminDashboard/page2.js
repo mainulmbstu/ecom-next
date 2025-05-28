@@ -8,6 +8,7 @@ import SubmitButton from "../SubmitButton";
 import { Axios } from "@/lib/helpers/AxiosInstance";
 import Swal from "sweetalert2";
 import TopSellingChart from "./TopSellingChart";
+import DateChart from "./DateChart";
 
 const Page2 = () => {
   let [endDate, setEndDate] = useState(new Date());
@@ -105,9 +106,12 @@ const Page2 = () => {
             </h4>
           </div>
         </div>
-        <div className="p-2 col-md-6 border mt-2">
+        <div className="p-2 border mt-2">
           <h4>Top {topProds?.length} selling products </h4>
           <TopSellingChart topProds={topProds} />
+        </div>
+        <div className="col-span-2 border">
+          <DateChart dateTotalProds={dateTotalProds} />
         </div>
       </div>
     </div>
