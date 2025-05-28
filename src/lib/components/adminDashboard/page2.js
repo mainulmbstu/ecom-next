@@ -69,7 +69,7 @@ const Page2 = () => {
       <div className="grid grid-cols-2 gap-2">
         <div className=" p-2  border mt-2">
           <div>
-            <Form action={clientAction} className=" w-100">
+            <Form action={clientAction} className="w-50">
               <label htmlFor="sdate" className=" font-bold">
                 Start Date
                 <input
