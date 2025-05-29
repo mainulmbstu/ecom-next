@@ -172,7 +172,7 @@ const NavMenu = () => {
           </ul>
         </nav>
       </div>
-      <div className="me-3 text-lg">
+      <div className="me-3 text-lg min-w-20">
         <button
           className=" cursor-pointer px-3"
           onClick={() => setTheme(theme == "light" ? "dark" : "light")}
