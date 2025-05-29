@@ -4,7 +4,7 @@ import "./nestedCategory.css";
 const NestedCategory = async () => {
   // let { data } = await Axios.get(`/api/both/category-list`);
   return (
-    <div>
+    <div className="hidden md:block">
       <NestedCategoryData />
       {/* <NestedCategoryData data={data} /> */}
     </div>

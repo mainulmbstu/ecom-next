@@ -5,11 +5,13 @@ import Image from "next/image";
 import { useAuth } from "@/lib/components/context";
 
 const SubCat = ({ slug }) => {
-  let { catPlain } = useAuth();
+  let { catPlain, catNested } = useAuth();
   let catItem = catPlain?.length && catPlain.find((item) => item.slug == slug);
 
   let subCat =
-    catItem && catPlain.filter((item) => item.parentId === catItem._id);
+    slug === "all-categories"
+      ? catNested
+      : catItem && catPlain.filter((item) => item.parentId === catItem._id);
   return (
     <div className="flex my-2">
       {subCat?.length ? (

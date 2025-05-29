@@ -9,7 +9,7 @@ const HomeCatPage = () => {
 
   return (
     <div className="flex my-2">
-      {catNested.length &&
+      {catNested?.length &&
         catNested.map((item) => (
           <div key={item._id} className=" px-2 ">
             <div className="p-2">

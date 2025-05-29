@@ -2,7 +2,7 @@ import React from "react";
 
 const Skeleton = () => {
   return (
-    <div className="grid grid-cols-4 gap-6">
+    <div className="grid md:grid-cols-4 gap-6">
       {Array.from({ length: 12 }, (v, i) => (
         <div key={i} className="flex flex-col gap-4">
           <div className="skeleton h-64 w-full"></div>
