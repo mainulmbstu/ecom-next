@@ -27,7 +27,7 @@ const CategoryPage = async ({ params, searchParams }) => {
   let entries = data?.productList;
   return (
     <div className="p-2">
-      <div className="my-3">
+      <div className={slug === "all-categories" ? "hidden" : "my-3"}>
         <Form action={`/products/category/${slug} `}>
           <div className="join">
             <div className="">
@@ -46,26 +46,28 @@ const CategoryPage = async ({ params, searchParams }) => {
         </Form>
       </div>
       <SubCat slug={slug} />
-      <h5>Total product found {data?.total} </h5>
-      <div className=" grid md:grid-cols-4 gap-6">
-        {entries?.length ? (
-          entries.map((item) => (
-            <motion.div
-              key={item._id}
-              initial={{ y: 100, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{
-                delay: 0.5,
-                type: "spring",
-                stiffness: 100,
-              }}
-            >
-              <Card item={item} />
-            </motion.div>
-          ))
-        ) : (
-          <p>No data found</p>
-        )}
+      <div className={slug === "all-categories" ? "hidden" : "'"}>
+        <h5>Total product found {data?.total} </h5>
+        <div className=" grid md:grid-cols-4 gap-6">
+          {entries?.length ? (
+            entries.map((item) => (
+              <motion.div
+                key={item._id}
+                initial={{ y: 100, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{
+                  delay: 0.5,
+                  type: "spring",
+                  stiffness: 100,
+                }}
+              >
+                <Card item={item} />
+              </motion.div>
+            ))
+          ) : (
+            <p>No data found</p>
+          )}
+        </div>
       </div>
       {/* <Loadmore
         total={data?.total}
