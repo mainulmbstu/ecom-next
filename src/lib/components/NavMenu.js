@@ -42,7 +42,7 @@ const NavMenu = () => {
           isMenuOpen ? "h-60 flex-1" : ""
         }`}
       >
-        <nav className=" relative">
+        <nav className="relative h-12">
           <ul
             className={`${
               isMenuOpen

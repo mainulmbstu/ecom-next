@@ -1,4 +1,3 @@
-import { Axios } from "../helpers/AxiosInstance";
 import NestedCategoryData from "./NestedCategoryData";
 import "./nestedCategory.css";
 const NestedCategory = async () => {
