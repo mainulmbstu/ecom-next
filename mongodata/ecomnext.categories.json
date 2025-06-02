@@ -9,13 +9,14 @@
     "$oid": "67d7f2e1b1e5d17a69818753"
   },
   "picture": {
-    "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1739850899/dir0m1r7wi2bphos1uqk.jpg"
+    "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1748170277/ecomNextCategory/ivcoxrabwqnrqilmp1ce.webp",
+    "public_id": "ecomNextCategory/ivcoxrabwqnrqilmp1ce"
   },
   "createdAt": {
     "$date": "2025-03-27T05:29:34.171Z"
   },
   "updatedAt": {
-    "$date": "2025-05-21T06:12:20.039Z"
+    "$date": "2025-05-25T10:51:17.280Z"
   },
   "__v": 0
 },
@@ -71,16 +72,17 @@
   "user": {
     "$oid": "67e658c8508e35794e76a814"
   },
-  "picture": {
-    "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1739850899/dir0m1r7wi2bphos1uqk.jpg"
-  },
   "createdAt": {
     "$date": "2025-05-21T06:11:53.902Z"
   },
   "updatedAt": {
-    "$date": "2025-05-21T06:11:53.902Z"
+    "$date": "2025-06-01T04:07:36.715Z"
   },
-  "__v": 0
+  "__v": 0,
+  "picture": {
+    "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1748750856/ecomNextCategory/isi8vx9osxs5qh4gxhfl.png",
+    "public_id": "ecomNextCategory/isi8vx9osxs5qh4gxhfl"
+  }
 },
 {
   "_id": {
@@ -93,13 +95,14 @@
     "$oid": "67e658c8508e35794e76a814"
   },
   "picture": {
-    "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1739850899/dir0m1r7wi2bphos1uqk.jpg"
+    "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1748169984/ecomNextCategory/m5tkc7ku5ffi1birqwz5.webp",
+    "public_id": "ecomNextCategory/m5tkc7ku5ffi1birqwz5"
   },
   "createdAt": {
     "$date": "2025-05-21T06:13:24.886Z"
   },
   "updatedAt": {
-    "$date": "2025-05-21T06:13:24.886Z"
+    "$date": "2025-05-25T10:46:24.282Z"
   },
   "__v": 0
 },
@@ -135,13 +138,14 @@
     "$oid": "67e658c8508e35794e76a814"
   },
   "picture": {
-    "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1739850899/dir0m1r7wi2bphos1uqk.jpg"
+    "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1748170548/ecomNextCategory/xlpi7m6hsencqb1ecoq1.webp",
+    "public_id": "ecomNextCategory/xlpi7m6hsencqb1ecoq1"
   },
   "createdAt": {
     "$date": "2025-05-21T08:25:54.114Z"
   },
   "updatedAt": {
-    "$date": "2025-05-21T08:25:54.114Z"
+    "$date": "2025-05-25T10:55:47.994Z"
   },
   "__v": 0
 }]

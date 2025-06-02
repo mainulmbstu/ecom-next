@@ -49,8 +49,8 @@
   ],
   "picture": [
     {
-      "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1747719628/ecomNextProduct/rrsv7lambbtcybleqwzk.webp",
-      "public_id": "ecomNextProduct/rrsv7lambbtcybleqwzk"
+      "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1748496450/ecomNextProduct/gtvcrtzcv0p9sreitapk.webp",
+      "public_id": "ecomNextProduct/gtvcrtzcv0p9sreitapk"
     }
   ],
   "amount": 1,
@@ -66,7 +66,7 @@
   "categoryName": "IPHONE15",
   "description": "uuuuuuuuuu",
   "price": 1,
-  "quantity": 27,
+  "quantity": 22,
   "user": {
     "$oid": "67d7f2e1b1e5d17a69818753"
   },
@@ -74,9 +74,9 @@
     "$date": "2025-03-27T06:31:12.475Z"
   },
   "updatedAt": {
-    "$date": "2025-05-20T06:20:32.885Z"
+    "$date": "2025-05-31T05:31:41.431Z"
   },
-  "__v": 1
+  "__v": 2
 },
 {
   "_id": {
@@ -90,15 +90,15 @@
   ],
   "picture": [
     {
-      "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1747719514/ecomNextProduct/qopwyqicitpzo6nyi2ev.webp",
-      "public_id": "ecomNextProduct/qopwyqicitpzo6nyi2ev"
+      "secure_url": "https://res.cloudinary.com/dgj1icpu7/image/upload/v1748495827/ecomNextProduct/o9jgar1wlb5mx6xldvuk.jpg",
+      "public_id": "ecomNextProduct/o9jgar1wlb5mx6xldvuk"
     }
   ],
   "amount": 1,
-  "review": 0,
-  "rating": 0,
-  "ratingNo": 0,
-  "like": 0,
+  "review": 2,
+  "rating": 4,
+  "ratingNo": 1,
+  "like": 1,
   "name": "TEER ATTA",
   "slug": "teer-atta",
   "category": {
@@ -114,15 +114,15 @@
     "$date": "2025-05-17T09:37:52.114Z"
   },
   "updatedAt": {
-    "$date": "2025-05-22T06:14:05.902Z"
+    "$date": "2025-05-29T05:17:07.540Z"
   },
-  "__v": 1
+  "__v": 2
 },
 {
   "_id": {
     "$oid": "682d6f4585553eb793014457"
   },
-  "offer": 0,
+  "offer": 20,
   "color": [
     "black",
     "red"
@@ -152,7 +152,7 @@
     "$date": "2025-05-21T06:14:29.855Z"
   },
   "updatedAt": {
-    "$date": "2025-05-22T02:43:12.991Z"
+    "$date": "2025-05-27T08:47:09.120Z"
   },
   "__v": 0
 }]

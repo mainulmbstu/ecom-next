@@ -52,37 +52,36 @@ const Print = ({ printItem }, ref) => {
           </thead>
 
           <tbody>
-            {printItem &&
-              printItem?.products.map((item, i) => {
-                return printItem ? (
-                  <tr key={item._id}>
-                    <td>{i + 1}</td>
-                    <td>{item.name}</td>
-                    <td>
-                      {
-                        <PriceFormat
-                          price={item.price - (item.price * item?.offer) / 100}
-                        />
-                      }
-                    </td>
-                    <td>{item.amount}</td>
-                    <td>
-                      {
-                        <PriceFormat
-                          price={
-                            (item?.price - (item?.price * item?.offer) / 100) *
-                            item.amount
-                          }
-                        />
-                      }
-                    </td>
-                  </tr>
-                ) : (
-                  <tr>
-                    <td>No data found</td>
-                  </tr>
-                );
-              })}
+          {printItem ? (
+              printItem?.products?.map((item, i) => (
+                <tr key={item?._id} className="hover:bg-zinc-200">
+                  <td>{i + 1}</td>
+                  <td>{item.name}</td>
+                  <td>
+                    {
+                      <PriceFormat
+                        price={item.price - (item.price * item?.offer) / 100}
+                      />
+                    }
+                  </td>
+                  <td>{item.amount}</td>
+                  <td>
+                    {
+                      <PriceFormat
+                        price={
+                          (item?.price - (item?.price * item?.offer) / 100) *
+                          item.amount
+                        }
+                      />
+                    }
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td>No data found</td>
+              </tr>
+            )}
           </tbody>
         </table>
         <div className="flex justify-end pe-5">
