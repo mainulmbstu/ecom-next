@@ -4,8 +4,8 @@ import { getTokenData } from "@/lib/helpers/getTokenData";
 import { getCookieValue } from "@/lib/helpers/helperFunction";
 import { OrderModel } from "@/lib/models/OrderModel";
 import { redirect } from "next/navigation";
-// const SSLCommerzPayment = require("sslcommerz-lts");
-import SSLCommerzPayment from "sslcommerz-lts";
+const SSLCommerzPayment = require("sslcommerz-lts");
+// import SSLCommerzPayment from "sslcommerz-lts";
 // import fetch from "node-fetch";
 
 export async function POST(req) {
