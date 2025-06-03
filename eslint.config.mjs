@@ -14,7 +14,10 @@ const eslintConfig = [
     extends: ["next", "prettier"],
     // extends: ["next/core-web-vitals", "prettier"],
     rules: {
-      ...js.configs.recommended.rules,
+      // ...js.configs.recommended.rules,
+      // "react/no-unescaped-entities": "off",
+      // "@typescript-eslint/no-unused-vars": "off",
+      // "@next/next/no-page-custom-font": "off",
     },
   }),
 ];
